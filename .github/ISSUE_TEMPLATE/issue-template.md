@@ -1,23 +1,47 @@
----
-name: issue template
-about: Describe this issue template's purpose here.
-title: ''
-labels: ''
-assignees: ''
+name: "Proposta de Conteúdo ou Funcionalidade"
+description: "Use este template para propor novos conteúdos, como um guia ou página, ou sugerir novas funcionalidades."
+title: "[ideia] <título da proposta>"
+labels: ["conteúdo", "ideia"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Antes de abrir esta issue, verifique se já existe uma issue semelhante [nesta lista](https://github.com/GovHub-br/gov-hub/issues) para evitar duplicações.
 
----
+  - type: textarea
+    id: proposta
+    attributes:
+      label: "Descreva sua proposta"
+      description: |
+        - Explique claramente o que você está propondo.
+        - Por que essa proposta é importante?
+        - Como ela contribui para o projeto como um todo?
+        - Se possível, indique um caminho ou solução para a proposta.
+    validations:
+      required: true
 
-## Descrição
-[Descrição detalhada do problema ou da tarefa.]}
-Forneça informações claras e concisas para que outros membros da equipe possam entender o contexto e a importância do problema.
+  - type: textarea
+    id: localizacao
+    attributes:
+      label: "Onde esse conteúdo ou funcionalidade deve ser incluído?"
+      description: "Se aplicável, indique páginas ou seções relacionadas onde esse conteúdo pode ser adicionado."
+    validations:
+      required: false
 
-## Tarefas
-Liste as tarefas específicas que precisam ser concluídas para resolver o problema ou concluir a tarefa, dívida tarefas grandes e complexas em tarefas simples.
-- [ ] Tarefa 1
-- [ ] Tarefa 2
+  - type: checkboxes
+    id: tarefas
+    attributes:
+      label: "Tarefas a serem realizadas"
+      options:
+        - label: "Este item é uma das tarefas a serem realizadas."
+    validations:
+      required: false
 
-## Testes
-Especifique os testes que precisam ser realizados para validar a solução. Caso não haja testes necessários, informe o motivo.
-- [ ] Teste unitário para
-- [ ] Teste de integração
-- [ ] Teste de regressão para garantir que não há impacto em funcionalidades existentes
+  - type: checkboxes
+    id: validacao
+    attributes:
+      label: "Checklist de validação (Deve ser preenchido por um revisor)"
+      options:
+        - label: "Este item é um requisito para o fechamento da issue."
+    validations:
+      required: false
