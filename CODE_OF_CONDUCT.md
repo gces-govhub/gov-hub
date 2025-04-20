@@ -25,7 +25,7 @@ O Gov Hub BR é um projeto colaborativo que valoriza um ambiente inclusivo, resp
 
 ## 4. Aplicação do código de conduta
 
-Violação deste código pode resultar em advertências, remoção de contribuições ou banimento do projeto, conforme a gravidade do caso. Se presenciar ou for alvo de comportamento inadequado, entre em contato pelo e-mail [email@exemplo.com](mailto:email@exemplo.com).
+Violação deste código pode resultar em advertências, remoção de contribuições ou banimento do projeto, conforme a gravidade do caso. Se presenciar ou for alvo de comportamento inadequado, entre em contato pelo e-mail [egewarth@gmail.com](egewarth@gmail.com).
 
 A equipe do Gov Hub BR se compromete a tratar todas as denúncias com confidencialidade e imparcialidade.
 
