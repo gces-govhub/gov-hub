@@ -28,20 +28,31 @@ body:
     validations:
       required: false
 
-  - type: checkboxes
+  - type: textarea
     id: tarefas
     attributes:
       label: "Tarefas a serem realizadas"
-      options:
-        - label: "Este item é uma das tarefas a serem realizadas."
+      description: |
+        Liste aqui as tarefas que você considera necessárias para implementar esta proposta.
+        Use checkboxes Markdown para facilitar o acompanhamento:
+        Exemplo:
+        - [ ] Descrever o objetivo da tarefa
+        - [ ] Implementar a funcionalidade
+        - [ ] Revisar o conteúdo/documentação
     validations:
       required: false
 
-  - type: checkboxes
+  - type: textarea
     id: validacao
     attributes:
-      label: "Checklist de validação (Deve ser preenchido por um revisor)"
-      options:
-        - label: "Este item é um requisito para o fechamento da issue."
+      label: "Checklist de validação (a ser preenchido por um revisor)"
+      description: |
+        Quais critérios devem ser verificados para considerar esta issue como concluída?
+        Use checkboxes Markdown para permitir marcação item a item:
+        Exemplo:
+        - [ ] Código/documentação testado e funcional
+        - [ ] Revisão aprovada por outro colaborador
+        - [ ] Conteúdo final publicado ou integrado
     validations:
       required: false
+
