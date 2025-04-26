@@ -23,6 +23,7 @@ A gestão orientada a dados é uma abordagem estratégica que reconhece os dados
 ## Elementos Centrais da Gestão Orientada a Dados
 
 ### 1. **Qualificação e Governança de Dados**
+
 A qualificação dos dados é a base para gerar informações úteis e acionáveis. Isso envolve:
 
 - Identificação de fontes confiáveis.
@@ -30,12 +31,14 @@ A qualificação dos dados é a base para gerar informações úteis e acionáve
 - Modelagem dos dados em tabelas organizadas para análises mais detalhadas.
 
 ### 2. **Automação e Eficiência Operacional**
+
 Ferramentas como **Airflow** são utilizadas para automatizar a coleta e o processamento de dados, permitindo:
 
 - Pipelines eficientes para grandes volumes de informações.
 - Redução de erros operacionais através de processos automatizados.
 
 ### 3. **Modelagem Dimensional e Integração**
+
 Por meio do **DBT (Data Build Tool)**, os dados são transformados em modelos dimensionais que:
 
 - Facilitam análises específicas.
@@ -46,12 +49,15 @@ Por meio do **DBT (Data Build Tool)**, os dados são transformados em modelos di
 ## Benefícios para o Setor Público
 
 ### Eficiência Administrativa
+
 A eliminação de tarefas redundantes e a automação de processos críticos reduzem custos e otimizam os recursos públicos.
 
 ### Tomada de Decisão Baseada em Dados
+
 Com dashboards interativos e relatórios detalhados, gestores têm acesso a informações em tempo real para tomar decisões estratégicas.
 
 ### Responsabilidade e Confiança
+
 Dados bem organizados e acessíveis fortalecem a confiança da sociedade na gestão pública, aumentando a transparência e permitindo maior controle social.
 
 ---

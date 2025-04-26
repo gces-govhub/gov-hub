@@ -1,30 +1,30 @@
-## Como vizualizar dashbords usando apache superset
-
 # 📊 Guia de Visualização de Dados com Apache Superset
+
+## Como vizualizar dashbords usando apache superset
 
 Este guia tem como objetivo orientar o uso do **Apache Superset** para conectar um banco de dados PostgreSQL, registrar datasets e criar dashboards interativos de forma simples.
 
 ---
 
-##  1. Conectando o Superset ao banco de dados PostgreSQL
+## 1. Conectando o Superset ao banco de dados PostgreSQL
 
 1. Acesse o Superset no navegador.
 2. No canto superior direito, clique no botão **`+`** e selecione **`Data` → `Connect Database`**.
 3. Escolha o tipo de banco de dados (**PostgreSQL**).
 4. Preencha os dados de conexão. Você pode usar a URI SQLAlchemy:
 
-```bash
-postgresql://usuario:senha@host:porta/nome_do_banco
-```
+    ```bash
+    postgresql://usuario:senha@host:porta/nome_do_banco
+    ```
 
-> 💡 Dica: Se estiver usando Docker, o host pode ser `host.docker.internal`.
+    > 💡 Dica: Se estiver usando Docker, o host pode ser `host.docker.internal`.
 
 5. Clique em **`Test Connection`** para verificar a conexão.
 6. Se tudo estiver correto, clique em **`Connect`** para salvar.
 
 ---
 
-##  2. Registrando um Dataset (Tabela)
+## 2. Registrando um Dataset (Tabela)
 
 1. Vá até **`Data` → `Datasets`**.  
 2. Clique no botão **`+ Dataset`** no canto superior direito.  
@@ -36,10 +36,9 @@ postgresql://usuario:senha@host:porta/nome_do_banco
 
 4. Clique em **`Add`** para registrar o dataset.
 
-
 ---
 
-##  3. Personalizando as colunas (opcional)
+## 3. Personalizando as colunas (opcional)
 
 1. Após adicionar um dataset, clique nele na lista.
 2. Clique em **`Edit Dataset`** (ícone de lápis).
@@ -53,7 +52,7 @@ postgresql://usuario:senha@host:porta/nome_do_banco
 
 ---
 
-##  4. Criando gráficos (charts)
+## 4. Criando gráficos (charts)
 
 1. No menu **Datasets**, clique no nome do dataset que deseja visualizar.  
 2. Isso abrirá o modo **Explore**, onde você pode criar gráficos com interface no-code.  
@@ -68,7 +67,6 @@ postgresql://usuario:senha@host:porta/nome_do_banco
 
     - Dê um nome ao gráfico.
     - Escolha adicionar a um dashboard existente ou criar um novo.
-
 
 ---
 
@@ -86,7 +84,7 @@ postgresql://usuario:senha@host:porta/nome_do_banco
 
 ---
 
-##  6. Gerenciando acesso a dashboards
+## 6. Gerenciando acesso a dashboards
 
 - **Proprietários**: têm permissão para editar.
 - **Usuários não-proprietários**: acesso pode ser gerenciado de duas formas:
@@ -95,7 +93,7 @@ postgresql://usuario:senha@host:porta/nome_do_banco
 
 ---
 
-##  7. Customizando a visualização do dashboard via URL
+## 7. Customizando a visualização do dashboard via URL
 
 Você pode adicionar parâmetros à URL para alterar como o dashboard é exibido:
 
@@ -106,6 +104,7 @@ Você pode adicionar parâmetros à URL para alterar como o dashboard é exibido
 | `expand_filters` | 0, 1 | Controla se a barra de filtros aparece expandida |
 
 Exemplo de URL:
+
 ```bash
 http://localhost:8088/superset/dashboard/my-dashboard/?standalone=1&show_filters=0
 ```

@@ -8,17 +8,15 @@ A arquitetura da plataforma Gov Hub BR foi elaborada para promover modularidade,
 
 O design adota o paradigma Lakehouse, estruturado em três camadas de processamento de dados:
 
-```
-Fontes de dados (APIs)
-↓
-Apache Airflow (orquestração e extração)
-↓
-DBT (transformação e modelagem)
-↓
-PostgreSQL (armazenamento em Bronze, Silver e Gold)
-↓
-Apache Superset (visualização e relatórios)
-```
+    Fontes de dados (APIs)
+    ↓
+    Apache Airflow (orquestração e extração)
+    ↓
+    DBT (transformação e modelagem)
+    ↓
+    PostgreSQL (armazenamento em Bronze, Silver e Gold)
+    ↓
+    Apache Superset (visualização e relatórios)
 
 ---
 
@@ -69,4 +67,3 @@ A pilha pode ser executada localmente via Docker Compose para validações inici
 ---
 
 Para maior detalhamento do processo de extração, transformação e carga de dados, consulte a seção **Integração de Dados**.
-

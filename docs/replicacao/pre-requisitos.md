@@ -18,13 +18,13 @@ Abaixo, a lista das tecnologias principais empregadas na arquitetura da platafor
 
 | Tecnologia            | Função                                                    | Documentação Oficial                                  |
 |-----------------------|-----------------------------------------------------------|--------------------------------------------------------|
-| Apache Airflow        | Orquestração e agendamento de pipelines (DAGs)           | https://airflow.apache.org/                           |
-| DBT (Data Build Tool) | Transformação e modelagem de dados                       | https://docs.getdbt.com/                              |
-| PostgreSQL            | Armazenamento relacional e data warehouse                 | https://www.postgresql.org/docs/                      |
-| Apache Superset       | Criação de dashboards e visualizações interativas         | https://superset.apache.org/                          |
-| Docker                | Padronização de ambiente e deploy em containers           | https://docs.docker.com/                              |
-| Astronomer Cosmos     | Integração entre DBT e Airflow                            | https://github.com/astronomer/astronomer-cosmos       |
-| Kubernetes (K8s)      | Orquestração de contêineres e escalabilidade              | https://kubernetes.io/docs/                           |
+| Apache Airflow        | Orquestração e agendamento de pipelines (DAGs)           | <https://airflow.apache.org/>                           |
+| DBT (Data Build Tool) | Transformação e modelagem de dados                       | <https://docs.getdbt.com/>                              |
+| PostgreSQL            | Armazenamento relacional e data warehouse                 | <https://www.postgresql.org/docs/>                      |
+| Apache Superset       | Criação de dashboards e visualizações interativas         | <https://superset.apache.org/>                          |
+| Docker                | Padronização de ambiente e deploy em containers           | <https://docs.docker.com/>                              |
+| Astronomer Cosmos     | Integração entre DBT e Airflow                            | <https://github.com/astronomer/astronomer-cosmos>       |
+| Kubernetes (K8s)      | Orquestração de contêineres e escalabilidade              | <https://kubernetes.io/docs/>                           |
 
 ---
 
@@ -43,7 +43,7 @@ Embora a plataforma tenha sido pensada para ser reutilizável, alguns conhecimen
 
 Nem todas as APIs públicas permitem acesso irrestrito. Algumas exigem:
 
-- **Certificado digital A1/A3** 
+- **Certificado digital A1/A3**
 - **Token de autenticação gerado por sistemas internos**
 - **Liberação específica por parte da equipe responsável pela API**
 

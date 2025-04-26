@@ -1,4 +1,4 @@
-## Guia de Contribuição
+# Guia de Contribuição
 
 Antes de começar, obrigado por considerar contribuir com o **Gov Hub BR**. acreditamos que a colaboração é essencial para construir soluções públicas mais eficientes, transparentes e sustentáveis.
 
@@ -17,6 +17,7 @@ git clone https://github.com/seu-usuario/govhub-br.git
 - crie uma nova branch
 
 recomendamos criar uma branch com um nome descritivo, como ajuste-na-doc ou feature-nova-transformacao:
+
 ```bash
 git checkout -b minha-contribuicao
 ```
@@ -33,9 +34,9 @@ contribuições podem incluir:
 
 - correção de erros ou inconsistências
 
-teste e valide sua contribuição
+- teste e valide sua contribuição
 
-3. **sobre o pull request**
+1. **sobre o pull request**
 
 Antes de enviar, certifique-se de que sua alteração está funcionando corretamente, sem quebrar funcionalidades existentes, e que segue os padrões definidos pelo projeto.
 

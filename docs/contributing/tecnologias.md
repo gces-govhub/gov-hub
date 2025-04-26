@@ -22,7 +22,6 @@ o dbt é utilizado para transformar, modelar e documentar os dados dentro do amb
 
 ## apache superset
 
-
 utilizamos o apache superset para criar dashboards interativos e visualizações que facilitam a análise dos dados processados. ele permite que gestores públicos explorem as informações de forma simples e eficiente.
 
 🔗 link para a documentação do superset: [https://superset.apache.org/](https://superset.apache.org/)
@@ -30,7 +29,6 @@ utilizamos o apache superset para criar dashboards interativos e visualizações
 ---
 
 ## postgresql
-
 
 o postgresql é o banco de dados relacional utilizado para armazenar dados estruturados. sua robustez e compatibilidade com ferramentas open-source o tornam ideal para o projeto.
 
@@ -48,7 +46,6 @@ o docker é usado para conteinerizar a aplicação, garantindo ambientes consist
 
 ## mkdocs
 
-
 o mkdocs é a ferramenta utilizada para criar e manter a documentação oficial do projeto. ele permite gerar páginas estáticas a partir de arquivos markdown de forma rápida e organizada.
 
 🔗 link para a documentação do mkdocs: [https://www.mkdocs.org/](https://www.mkdocs.org/)
@@ -56,7 +53,6 @@ o mkdocs é a ferramenta utilizada para criar e manter a documentação oficial 
 ---
 
 ## astronomer cosmos
-
 
 o cosmos é uma extensão do astronomer para integração entre dbt e airflow. utilizamos essa ferramenta para orquestrar pipelines dbt dentro do ambiente do airflow de forma nativa e eficiente.
 

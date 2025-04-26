@@ -61,9 +61,9 @@ docker-compose up -d
 
 Uma vez que os serviços estejam em execução, você pode acessar as ferramentas principais nos seguintes URLs:
 
-- Airflow: http://localhost:8080
-- Jupyter: http://localhost:8888
-- Superset: http://localhost:8088
+- Airflow: <http://localhost:8080>
+- Jupyter: <http://localhost:8888>
+- Superset: <http://localhost:8088>
 
 Certifique-se de que todas as portas mencionadas estejam disponíveis no seu ambiente.
 
@@ -107,27 +107,30 @@ Este projeto utiliza **commits assinados digitalmente (GPG signing)** como parte
 
 1. Gere uma chave GPG:
 
-```bash
-  gpg --full-generate-key
-```
-
+  ```bash
+    gpg --full-generate-key
+  ```
+  
 2. Configure o Git para usar sua chave GPG:
-```bash
-  git config --global user.signingkey YOUR_KEY_ID
-  git config --global commit.gpgsign true
-```
+
+  ```bash
+    git config --global user.signingkey YOUR_KEY_ID
+    git config --global commit.gpgsign true
+  ```
 
 3. Adicione sua chave GPG à sua conta do GitLab:
-- Acesse as configurações da sua conta GitLab.
-- Cole a chave pública gerada pelo comando:
 
-```bash
-gpg --armor --export YOUR_KEY_ID
-```
+   - Acesse as configurações da sua conta GitLab.
+   - Cole a chave pública gerada pelo comando:
+
+   ```bash
+   gpg --armor --export YOUR_KEY_ID
+   ```
 
 Com isso, todos os seus commits estarão assinados e prontos para serem utilizados no projeto.
 
 ## 📚 Documentação Útil
+
 Para aproveitar ao máximo os componentes do projeto, consulte as documentações oficiais:
 
 - [Documentação do Airflow](https://airflow.apache.org/docs/)

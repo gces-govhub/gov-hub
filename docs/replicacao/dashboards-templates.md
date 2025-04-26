@@ -6,9 +6,7 @@ Nesta seção, apresentamos os **modelos de dashboards** e os **scripts de camad
 
 ## 1. Scripts de Camada Gold
 
-
 ## 2. Exportando Dashboards do IPEA
-
 
 ## 3. Importando e Adaptando no Seu Superset
 
@@ -19,4 +17,3 @@ Nesta seção, apresentamos os **modelos de dashboards** e os **scripts de camad
 - **Iteração:** revise e colete feedback dos gestores para aprimorar métricas e visualizações.
 
 ---
-

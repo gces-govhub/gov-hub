@@ -77,4 +77,3 @@ Essa estrutura facilita a rastreabilidade, a padronização e a governança dos 
 ## Conclusão
 
 A proposta do Gov Hub BR é democratizar o acesso a dados públicos de forma segura, reutilizável e tecnicamente sólida. A partir da integração com APIs governamentais documentadas e abertas, é possível construir bases de dados qualificadas que fortalecem a gestão pública e aumentam a transparência.
-

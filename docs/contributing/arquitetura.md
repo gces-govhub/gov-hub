@@ -13,7 +13,6 @@ o fluxo básico pode ser representado assim:
 origens de dados → airflow (orquestração) → dbt (transformação)
 → data warehouse (bronze/silver/gold) → superset (visualização)
 
-
 ---
 
 ## componentes da infraestrutura
@@ -56,9 +55,9 @@ origens de dados → airflow (orquestração) → dbt (transformação)
 
 - o projeto pode ser executado localmente com docker-compose ou em ambientes cloud.
 - estrutura recomendada:
-  -  servidor para orquestração (airflow + cosmos)
-  -  servidor para banco de dados (postgres)
-  -  servidor para bi (superset)
+  - servidor para orquestração (airflow + cosmos)
+  - servidor para banco de dados (postgres)
+  - servidor para bi (superset)
 
 ### permissões e segurança
 
@@ -92,6 +91,3 @@ o gov hub br foi desenhado para operar com grandes volumes de dados e pode escal
 ## considerações finais
 
 a arquitetura modular do gov hub br permite flexibilidade para evoluir conforme as necessidades dos órgãos públicos, mantendo uma base sólida de governança e performance.
-
-
-teste

@@ -35,6 +35,7 @@ Esta seção está dividida em tópicos que cobrem desde os pré-requisitos téc
 ## 🎯 Público-alvo
 
 Este material é direcionado a:
+
 - Equipes técnicas de órgãos públicos que desejam estruturar sua governança de dados.
 - Profissionais de dados e gestores que buscam entender como implantar uma plataforma integrada com base em dados públicos.
 

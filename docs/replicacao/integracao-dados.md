@@ -95,7 +95,6 @@ dag_instance = api_contratos_dag()
 
 ```  
 
-
 ### 1.3. Boas Práticas
 
 - Evite DAGs monolíticas: crie funções e subDAGs para cada recurso.
@@ -108,13 +107,11 @@ dag_instance = api_contratos_dag()
 
 ### 2.1. Estrutura do Projeto
 
-
 ### 2.2. Modelagem
 
 ## 3. Carga e Organização no PostgreSQL
 
 ### 3.1. Convenções de Schema e Tabelas
-
 
 ### 3.2. Monitoramento
 
@@ -130,5 +127,3 @@ dag_instance = api_contratos_dag()
 - A camada Gold depende de regras de negócio específicas e é disponibilizada como template.
 
 ---
-
-

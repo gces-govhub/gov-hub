@@ -1,8 +1,7 @@
 # Guia Usuário
 
-# Configurar Superset
+## Configurar Superset
 
-# Subir dashboards
+## Subir dashboards
 
-
-# Criar novos dashboards
+## Criar novos dashboards
