@@ -89,3 +89,86 @@ Esse processamento ocorrerá **dentro do fluxo ETL** já existente, entre a tran
 
 ---
 
+# 📆 Planejamento por Releases (Funcionalidade)
+
+## 📍 Release I — Infraestrutura e Preparação (28/04/2025)
+
+**Objetivos:**
+- Instalar e configurar dependências (spaCy, regex, pandas).
+- Estruturar ambiente de desenvolvimento da funcionalidade.
+- Estudo inicial dos padrões de texto dos campos de observação.
+- Definição do escopo dos identificadores a serem extraídos.
+
+**Entregas:**
+- Ambiente Docker configurado para NLP.
+- Documento técnico: "Padrões de Texto e Estratégias de Extração".
+- Criação do branch `feature/ai-extraction-preparation`.
+
+---
+
+## 📍 Release II — Teste de Conceito (PoC) e Avaliação (02/06/2025)
+
+**Objetivos:**
+- Desenvolver protótipos de extração utilizando modelos de linguagem via HuggingFace Transformers.
+- Implementar teste de conceito alternativo utilizando OpenAI API (ou outro modelo gratuito) em ambiente Jupyter Notebook.
+- Avaliar o desempenho das abordagens quanto à extração correta dos identificadores.
+- Definir a solução técnica a ser implementada no pipeline definitivo.
+
+**Entregas:**
+- Branch `feature/ai-extraction-poc` criado e publicado.
+- Scripts de extração com BERTimbau documentados e versionados.
+- Relatório técnico de avaliação comparativa de abordagens.
+
+---
+
+## 📍 Release III — Implementação Final e Integração (25/06/2025)
+
+**Objetivos:**
+- Implementar o agente de IA definitivo baseado na solução aprovada (HuggingFace + BERTimbau).
+- Integrar o agente de extração ao pipeline de dados DBT.
+- Realizar o processo de matching e merge entre as Tabelas A e B, consolidando a nova Tabela Silver
+- Automatizar a execução do processo dentro do Airflow.
+- Produzir documentação detalhada para operação e manutenção da funcionalidade.
+
+**Entregas:**
+- Branch `feature/ai-extraction-final` criada e mergeada.
+- Pipeline DBT atualizado com execução da extração e integração dos dados.
+- Nova Tabela Silver consolidada disponível em PostgreSQL.
+- Documentação da funcionalidade publicada.
+
+
+
+# 🎡 Épicos, Features e Histórias de Usuário
+
+## Épico 1: Preparação e Ambiente
+- Configuração de ambiente Docker.
+- Estudo exploratório dos campos de observação.
+
+## Épico 2: Teste de Conceito
+- Desenvolvimento de protótipos utilizando APIs e Transformers.
+- Avaliação de performance e viabilidade.
+
+## Épico 3: Desenvolvimento e Deploy Final
+- Desenvolvimento do agente definitivo.
+- Integração ao pipeline DBT e Airflow.
+- Deploy final e disponibilização da nova Tabela Silver.
+
+---
+
+## 🛠️ Features (Principais Funcionalidades)
+Criação de ambiente padronizado para processamento NLP.
+
+Desenvolvimento do agente de extração com HuggingFace Transformers.
+
+Integração da extração automática na transformação DBT.
+
+Implementação do processo de matching automatizado para construção da Tabela Silver.
+
+
+## 📋 Histórias de Usuário
+
+- **Usuário 1**: Como analista de dados, quero extrair automaticamente identificadores a partir de descrições textuais, para permitir integrações precisas entre bases.
+- **Usuário 2**: Como cientista de dados, quero validar abordagens de extração utilizando diferentes modelos de NLP para garantir a maior precisão possível na correspondência dos identificadores.
+- **Usuário 3**: Como gestor público, quero acessar dashboards e relatórios que consolidem informações de forma automatizada e confiável, facilitando a tomada de decisão.
+
+---
