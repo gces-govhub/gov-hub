@@ -1,4 +1,6 @@
 # Título do Pull Request
+
+**Use o formato**  
 Ex.: `feat(docs): adiciona seção de contribuição no README`
 
 ---
@@ -40,3 +42,40 @@ Marque com “x” o que se aplica:
 - [ ] outra (descreva abaixo)  
 
 Se escolher “outra”, especifique:  
+
+
+---
+
+## Checklist
+
+- [ ] Segui o padrão de **Conventional Commits**  
+- [ ] Criei/atualizei testes automatizados (se aplicável)  
+- [ ] Rodei `lint` e todos os checks do CI passaram  
+- [ ] Documentei mudanças na doc ou README (se aplicável)  
+- [ ] Linkei este PR a uma issue (ex.: “resolve #42”)  
+
+---
+
+## Issue Relacionada
+
+> Se aplicável, use [resolve|closes] #\<número\>  
+Ex.: `Closes #42`
+
+---
+
+## Breaking Changes
+
+> Descreva aqui mudanças que **não são compatíveis** com versões anteriores.  
+Ex.: “O endpoint `/api/old` foi removido.”  
+
+---
+
+## Screenshots / GIFs
+
+> Se tiver interface visual, insira imagens ou GIFs aqui para facilitar revisão.
+
+---
+
+## Considerações Finais
+
+Informações extras, links de referência, orientações para deploy ou migrações de banco, etc.
