@@ -99,6 +99,10 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/GovHub-br/govhub.githubio
 
+extra_css:
+  - assets/css/extra.css
+
+  
 # Extensions
 markdown_extensions:
   - abbr
