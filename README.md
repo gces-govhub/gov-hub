@@ -1,5 +1,7 @@
 # Gov Hub BR - plataforma de integração de dados e informações governamentais
 
+[![Contribua com o projeto 🚀](https://img.shields.io/badge/Contribua%20com%20o%20projeto-🚀-brightgreen)](CONTRIBUTING.md)
+
 ## Sobre o projeto
 
 O Gov Hub BR é uma iniciativa para enfrentar os desafios da fragmentação, redundância e inconsistências nos sistemas estruturantes do governo federal. O projeto busca transformar dados públicos em ativos estratégicos, promovendo eficiência administrativa, transparência e melhor tomada de decisão. A partir da integração de dados, gestores públicos terão acesso a informações qualificadas para subsidiar decisões mais assertivas, reduzir custos operacionais e otimizar processos internos. Além disso, a iniciativa fortalece a transparência governamental ao disponibilizar dados organizados para órgãos públicos e sociedade civil.
