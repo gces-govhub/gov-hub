@@ -110,7 +110,7 @@ Este projeto utiliza **commits assinados digitalmente (GPG signing)** como parte
   ```bash
     gpg --full-generate-key
   ```
-  
+
 2. Configure o Git para usar sua chave GPG:
 
   ```bash

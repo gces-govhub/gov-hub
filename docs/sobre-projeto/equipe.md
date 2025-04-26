@@ -22,7 +22,25 @@ O projeto é uma iniciativa de código aberto e está sendo trabalhado em conjun
     <a href="https://github.com/joycejdm">
       <img src="https://avatars.githubusercontent.com/joycejdm" class="profile-pic" alt="Joyce Dionízio"/><br />
       <sub><b>Joyce Dionízio</b></sub>
+      <br />
     </a>
+    <sub><b>Scrum Master</b></sub>
+  </div>
+  <div class="team-member">
+    <a href="https://github.com/kessJhones">
+      <img src="https://avatars.githubusercontent.com/kessJhones" class="profile-pic" alt="Kess Jhones"/><br />
+      <sub><b>Kess Jhones</b></sub>
+      <br />
+    </a>
+    <sub><b>Mantenedor</b></sub>
+  </div>
+  <div class="team-member">
+    <a href="https://github.com/yaskisoba">
+      <img src="https://avatars.githubusercontent.com/yaskisoba" class="profile-pic" alt="Yasmin Rosa"/><br />
+      <sub><b>Yasmin Rosa</b></sub>
+      <br />
+    </a>
+    <sub><b>Docs Lead</b></sub>
   </div>
   <div class="team-member">
     <a href="https://github.com/Amandaaaaabreu">
@@ -43,12 +61,6 @@ O projeto é uma iniciativa de código aberto e está sendo trabalhado em conjun
     </a>
   </div>
   <div class="team-member">
-    <a href="https://github.com/kessJhones">
-      <img src="https://avatars.githubusercontent.com/kessJhones" class="profile-pic" alt="Kess Jhones"/><br />
-      <sub><b>Kess Jhones</b></sub>
-    </a>
-  </div>
-  <div class="team-member">
     <a href="https://github.com/luderibeiro">
       <img src="https://avatars.githubusercontent.com/luderibeiro" class="profile-pic" alt="Lude Ribeiro"/><br />
       <sub><b>Lude Ribeiro</b></sub>
@@ -58,12 +70,6 @@ O projeto é uma iniciativa de código aberto e está sendo trabalhado em conjun
     <a href="https://github.com/pedrolucas12">
       <img src="https://avatars.githubusercontent.com/pedrolucas12" class="profile-pic" alt="Pedro Lucas Santana"/><br />
       <sub><b>Pedro Lucas Santana</b></sub>
-    </a>
-  </div>
-  <div class="team-member">
-    <a href="https://github.com/yaskisoba">
-      <img src="https://avatars.githubusercontent.com/yaskisoba" class="profile-pic" alt="Yasmin Rosa"/><br />
-      <sub><b>Yasmin Rosa</b></sub>
     </a>
   </div>
 </div>
