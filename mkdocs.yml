@@ -71,7 +71,6 @@ theme:
   favicon: assets/favicon.png
   icon:
     logo: logo
-  theme:
   language: pt-BR
 
 # Plugins
