@@ -24,7 +24,7 @@ O projeto é uma iniciativa de código aberto e está sendo trabalhado em conjun
       <sub><b>Joyce Dionízio</b></sub>
       <br />
     </a>
-    <sub><b>Scrum Master</b></sub>
+    <sub><b>Community Manager</b></sub>
   </div>
   <div class="team-member">
     <a href="https://github.com/kessJhones">
