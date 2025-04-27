@@ -181,3 +181,5 @@ nav:
     - Como gerar Dashboards: contributing/visualizar_dashboards.md
     - Melhores Praticas: contributing/praticas.md
     - Como implantar um Deploy: contributing/deploy.md
+  - Roadmap:
+    - Roadmap: roadmap/roadmap.md
