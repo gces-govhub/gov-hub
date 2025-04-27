@@ -34,7 +34,6 @@ Esta funcionalidade é crítica para aprimorar a integração de bases de dados,
 - OpenAI API ou Alternativa Open Source (por exemplo, HuggingFace Inference API).
 - Jupyter Notebook: Ambiente de prototipação rápida para extração de informações.
 - Transformers (HuggingFace): Para testes com modelos públicos de extração textual.
-- openai Python SDK (se usar OpenAI).
 
 ---
 
@@ -50,8 +49,8 @@ Antes da implementação definitiva do Agente de IA no pipeline de produção, s
     - Utilizar amostras reais dos campos observacao da Tabela B.
 
 2. Ferramentas:
-    - GPT-3.5-turbo via OpenAI API para tarefas de extração textual supervisionada.
-    - Alternativas Open Source via HuggingFace, caso necessário.
+    - OpenAI API para tarefas de extração textual supervisionada.
+    - Alternativas Open Source, caso necessário.
 
 3. Metodologia:
     - Inserir exemplos reais de campos de observação.
@@ -79,7 +78,7 @@ Antes da implementação definitiva do Agente de IA no pipeline de produção, s
     - Após a extração, realiza-se o JOIN entre:
         - Identificadores extraídos da Tabela B
         - Identificadores originais da Tabela A
-    - Match feito usando lógica de tolerância a erro mínima (fuzzy matching controlado se necessário).
+    - Match feito usando lógica de tolerância a erro mínima.
 4. Output (Silver):
     - Nova Tabela Silver consolidando:
         - Dados estruturados da Tabela A
@@ -89,20 +88,20 @@ Esse processamento ocorrerá **dentro do fluxo ETL** já existente, entre a tran
 
 ---
 
-# 📆 Planejamento por Releases (Funcionalidade)
+# 📆 Planejamento por Releases
 
 ## 📍 Release I — Infraestrutura e Preparação (28/04/2025)
 
 **Objetivos:**
-- Instalar e configurar dependências (spaCy, regex, pandas).
-- Estruturar ambiente de desenvolvimento da funcionalidade.
-- Estudo inicial dos padrões de texto dos campos de observação.
-- Definição do escopo dos identificadores a serem extraídos.
+- Aprimorar a documentação do projeto e seus componentes.
+- Realizar estudo preliminar sobre a viabilidade de extração automática de identificadores.
+- Revisar e organizar o ambiente de desenvolvimento para futuras implementações.
+- Definir os primeiros requisitos técnicos para o Teste de Conceito (PoC).
+
 
 **Entregas:**
-- Ambiente Docker configurado para NLP.
-- Documento técnico: "Padrões de Texto e Estratégias de Extração".
-- Criação do branch `feature/ai-extraction-preparation`.
+- Atualização e melhoria das documentações MkDocs existentes.
+- Planejamento do escopo do Teste de Conceito (PoC).
 
 ---
 
@@ -137,38 +136,65 @@ Esse processamento ocorrerá **dentro do fluxo ETL** já existente, entre a tran
 - Documentação da funcionalidade publicada.
 
 
-
 # 🎡 Épicos, Features e Histórias de Usuário
 
-## Épico 1: Preparação e Ambiente
-- Configuração de ambiente Docker.
-- Estudo exploratório dos campos de observação.
+## 📚 Épico 1: Organização e Preparação Inicial
+> Preparação do ambiente, documentação e análise preliminar.
 
-## Épico 2: Teste de Conceito
-- Desenvolvimento de protótipos utilizando APIs e Transformers.
-- Avaliação de performance e viabilidade.
+- **Feature 1.1: Atualizar a documentação técnica do projeto**
+  - (Sem história de usuário direta)
 
-## Épico 3: Desenvolvimento e Deploy Final
-- Desenvolvimento do agente definitivo.
-- Integração ao pipeline DBT e Airflow.
-- Deploy final e disponibilização da nova Tabela Silver.
+- **Feature 1.2: Estudo dos padrões de observação**
+  - **História de Usuário 1**:  
+    _Como cientista de dados, quero entender os padrões dos campos de observação para planejar a melhor abordagem de extração._
+
+- **Feature 1.3: Definição do planejamento do PoC**
+  - **História de Usuário 2**:  
+    _Como analista de dados, quero definir previamente as estratégias de extração para guiar o desenvolvimento do Teste de Conceito._
 
 ---
 
-## 🛠️ Features (Principais Funcionalidades)
-Criação de ambiente padronizado para processamento NLP.
+## 📚 Épico 2: Teste de Conceito para Extração de Identificadores
+> Prototipagem, teste e avaliação de abordagens de IA para extração.
 
-Desenvolvimento do agente de extração com HuggingFace Transformers.
+- **Feature 2.1: Desenvolvimento de protótipo usando OpenAI API**
+  - **História de Usuário 3**:  
+    _Como cientista de dados, quero testar a extração de identificadores usando modelos de linguagem prontos para validar viabilidade rápida._
 
-Integração da extração automática na transformação DBT.
+- **Feature 2.2: Desenvolvimento de protótipo usando HuggingFace Transformers**
+  - **História de Usuário 4**:  
+    _Como cientista de dados, quero desenvolver um protótipo open-source para garantir independência tecnológica e redução de custos._
 
-Implementação do processo de matching automatizado para construção da Tabela Silver.
+- **Feature 2.3: Avaliação e comparação das abordagens**
+  - **História de Usuário 5**:  
+    _Como analista de dados, quero comparar o desempenho dos modelos para escolher a melhor abordagem para produção._
 
+- **Feature 2.4: Documento de decisão técnica**
+  - (Sem história de usuário direta.)
 
-## 📋 Histórias de Usuário
+---
 
-- **Usuário 1**: Como analista de dados, quero extrair automaticamente identificadores a partir de descrições textuais, para permitir integrações precisas entre bases.
-- **Usuário 2**: Como cientista de dados, quero validar abordagens de extração utilizando diferentes modelos de NLP para garantir a maior precisão possível na correspondência dos identificadores.
-- **Usuário 3**: Como gestor público, quero acessar dashboards e relatórios que consolidem informações de forma automatizada e confiável, facilitando a tomada de decisão.
+## 📚 Épico 3: Desenvolvimento e Integração do Agente Definitivo
+> Construção e implantação do agente final no pipeline de produção.
+
+- **Feature 3.1: Implementar agente HuggingFace Transformers definitivo**
+  - **História de Usuário 6**:  
+    _Como analista de dados, quero contar com um agente de extração treinado e validado para automatizar o processamento dos dados._
+
+- **Feature 3.2: Integração no pipeline DBT**
+  - **História de Usuário 7**:  
+    _Como engenheiro de dados, quero integrar a extração no DBT para padronizar a transformação dos dados sem processos manuais._
+
+- **Feature 3.3: Implementar lógica de matching e merge entre tabelas**
+  - **História de Usuário 8**:  
+    _Como analista de dados, quero garantir o cruzamento correto de dados entre tabelas para consolidar informações de forma automatizada._
+
+- **Feature 3.4: Automatizar execução no Airflow**
+  - **História de Usuário 9**:  
+    _Como engenheiro DevOps, quero automatizar a orquestração da extração para manter o pipeline escalável e confiável._
+
+- **Feature 3.5: Atualizar a Tabela Silver consolidada**
+  - **História de Usuário 10**:  
+    _Como gestor público, quero acessar dashboards e relatórios baseados em dados consolidados para facilitar auditorias e decisões._
 
 ---
