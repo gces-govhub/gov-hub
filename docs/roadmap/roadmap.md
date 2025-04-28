@@ -90,9 +90,9 @@ Esse processamento ocorrerá **dentro do fluxo ETL** já existente, entre a tran
 
 ---
 
-# 📆 Planejamento por Releases
+# 📆 Planejamento por Versões
 
-## 📍 Release I — Infraestrutura e Preparação (28/04/2025)
+## 📍 Versão 1.0.0 — Estruturação Inicial e Ambientação
 
 **Objetivos:**
 
@@ -109,7 +109,7 @@ Esse processamento ocorrerá **dentro do fluxo ETL** já existente, entre a tran
 
 ---
 
-## 📍 Release II — Teste de Conceito (PoC) e Avaliação (02/06/2025)
+## 📍 Versão 1.1.0 — Teste de Conceito de Extração de Identificadores
 
 **Objetivos:**
 
@@ -126,7 +126,7 @@ Esse processamento ocorrerá **dentro do fluxo ETL** já existente, entre a tran
 
 ---
 
-## 📍 Release III — Implementação Final e Integração (25/06/2025)
+## 📍 Versão 2.0.0 — Implementação do Agente Definitivo e Integração no Pipeline
 
 **Objetivos:**
 
