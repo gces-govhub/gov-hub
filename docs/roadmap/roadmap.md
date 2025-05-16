@@ -112,6 +112,11 @@ Esse processamento ocorrerá **dentro do fluxo ETL** já existente, entre a tran
 - Atualização e melhoria das documentações MkDocs existentes.
 - Planejamento do escopo do Teste de Conceito (PoC).
 
+- 🔖 **Releases publicadas:**
+    - [infra-lappis-ipea v1.0.0](https://github.com/gces-govhub/infra-lappis-ipea/releases/tag/v1.0.0)
+    - [app-lappis-ipea v1.0.0](https://github.com/gces-govhub/app-lappis-ipea/releases/tag/v1.0.0)
+    - [gov-hub v1.0.0](https://github.com/gces-govhub/gov-hub/releases/tag/v1.0.0)
+
 ---
 
 ## 📍 Versão 1.1.0 — Teste de Conceito de Extração de Identificadores
