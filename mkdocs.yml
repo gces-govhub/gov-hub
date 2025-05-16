@@ -175,6 +175,7 @@ nav:
     - Guia de Contribuição: contributing/guia-contribuicao.md
     - Tecnologias: contributing/tecnologias.md
     - Arquitetura do Projeto: contributing/arquitetura.md
+    - Infraestrutura do Projeto: contributing/infraestrutura.md
     - Como importar um banco de dados de sistema estruturante: contributing/importar_bancos.md
     - Como Qualificar dados: contributing/qualificar.md
     - Como integrar bases de dados: contributing/integrar.md
