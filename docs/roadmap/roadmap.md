@@ -39,33 +39,38 @@ Esta funcionalidade é crítica para aprimorar a integração de bases de dados,
 ---
 
 ## 🧪 Fase de Teste de Conceito e Avaliação de Estratégias de Extração
+
 Antes da implementação definitiva do Agente de IA no pipeline de produção, será realizada uma Fase de Teste de Conceito (PoC) para:
 
 - Avaliar a viabilidade da extração automática de identificadores em campos de texto livres.
-- Testar rapidamente diferentes estratégias de NLP utilizando APIs já disponíveis.
+- Investigar diferentes estratégias e ferramentas de NLP apropriadas ao contexto do projeto.
 - Identificar desafios e limitações práticas na interpretação dos textos de observação.
 
 ### Estratégia do Teste:
-1. Ambiente:
-    - Rodar os experimentos iniciais em Jupyter Notebooks.
-    - Utilizar amostras reais dos campos observacao da Tabela B.
 
-2. Ferramentas:
-    - OpenAI API para tarefas de extração textual supervisionada.
-    - Alternativas Open Source, caso necessário.
+1. **Ambiente:**
+    - Os experimentos iniciais serão conduzidos em ambiente controlado (ex: notebooks interativos ou scripts locais).
+    - Serão utilizadas amostras reais dos campos `observacao` da Tabela B como base para os testes.
 
-3. Metodologia:
-    - Inserir exemplos reais de campos de observação.
-    - Formular prompts para extrair explicitamente os identificadores desejados.
+2. **Ferramentas**
+    - As ferramentas, bibliotecas e modelos de linguagem ainda estão em avaliação.
+    - A equipe irá testar diferentes abordagens (open-source e APIs de terceiros).
+    - Será priorizada uma solução que ofereça equilíbrio entre custo, desempenho e independência tecnológica.
 
-4. Avaliar:
-    - Se o modelo consegue extrair corretamente os campos (num_transf, contrato_num, etc).
-    - Se há confusão ou ambiguidade.
-    - Tempo de inferência, custo e viabilidade prática.
+3. **Metodologia:**
+    - Aplicação de estratégias supervisionadas ou semi-supervisionadas para a extração de identificadores.
+    - Formulação de exemplos e casos de teste com base nos identificadores-alvo.
 
-5. Critérios de Sucesso:
-    - Precisão acima de 85% na extração dos identificadores relevantes em pelo menos 80% dos casos testados.
-    - Custo computacional e de API dentro dos limites viáveis para posterior migração para BERTimbau.
+4. **Avaliação:**
+    - Precisão dos identificadores extraídos (`num_transf`, `contrato_num`, etc.).
+    - Clareza e confiabilidade dos resultados.
+    - Complexidade de integração com o pipeline de dados.
+    - Custo e viabilidade prática para ambientes maiores.
+
+5. **Critérios de Sucesso:**
+    - Precisão mínima de 85% em pelo menos 80% dos casos testados.
+    - Solução técnica factível de ser integrada ao pipeline com custo aceitável.
+    - Capacidade de evolução futura sem dependência crítica de fornecedores fechados.
 
 
 ## 🛠️ Arquitetura de Integração da Funcionalidade
