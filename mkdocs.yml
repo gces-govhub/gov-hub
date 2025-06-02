@@ -154,23 +154,17 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - E-book:
-    - Gov Hub - plataforma livre de integração de dados e informações governamentais: getting-started.md
+  #- E-book:
+    #- Gov Hub - plataforma livre de integração de dados e informações governamentais: getting-started.md
   - Sobre o Projeto:
     - Propósito e Objetivo Geral: sobre-projeto/proposito-objetivo.md
     - Sistemas Estruturantes: sobre-projeto/sistemas-estruturantes.md
     - Gestão Orientada a Dados: sobre-projeto/gestao-dados.md
-    - Conceitos: sobre-projeto/sistemas-estruturantes.md
+    # - Conceitos: sobre-projeto/sistemas-estruturantes.md
     - Equipe: sobre-projeto/equipe.md
   - Getting started:
     - Instalação: getting-started.md
     - Guia de Novo usuario: guia-usuario.md
-  - Replicação:
-    - Visão Geral: replicacao/index.md
-    - Pré-requisitos: replicacao/pre-requisitos.md
-    - Arquitetura de Solução: replicacao/arquitetura.md
-    - Integração de Dados: replicacao/integracao-dados.md
-    - Dashboards e Templates: replicacao/dashboards-templates.md
   - Community:
     - Guia de Contribuição: contributing/guia-contribuicao.md
     - Tecnologias: contributing/tecnologias.md
@@ -182,5 +176,10 @@ nav:
     - Como gerar Dashboards: contributing/visualizar_dashboards.md
     - Melhores Praticas: contributing/praticas.md
     - Como implantar um Deploy: contributing/deploy.md
-  - Roadmap:
-    - Roadmap: roadmap/roadmap.md
+    - Replicação:
+      - Visão Geral: replicacao/index.md
+      - Pré-requisitos: replicacao/pre-requisitos.md
+      - Arquitetura de Solução: replicacao/arquitetura.md
+      - Integração de Dados: replicacao/integracao-dados.md
+    - Roadmap:
+      - Roadmap: roadmap/roadmap.md
