@@ -74,10 +74,10 @@ O projeto é uma iniciativa de código aberto e está sendo trabalhado em conjun
   </div>
 </div>
 
-## Ipea
+<!-- ## Ipea
 
 (Em breve...)
 
 ## Capibari
 
-(Em breve...)
+(Em breve...) -->
