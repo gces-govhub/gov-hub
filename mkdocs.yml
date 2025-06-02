@@ -170,12 +170,12 @@ nav:
     - Tecnologias: contributing/tecnologias.md
     - Arquitetura do Projeto: contributing/arquitetura.md
     - Infraestrutura do Projeto: contributing/infraestrutura.md
-    - Como importar um banco de dados de sistema estruturante: contributing/importar_bancos.md
-    - Como Qualificar dados: contributing/qualificar.md
-    - Como integrar bases de dados: contributing/integrar.md
+    - Integração com sistemas estruturantes: contributing/importar_bancos.md
+    # - Como Qualificar dados: contributing/qualificar.md
+    # - Como integrar bases de dados: contributing/integrar.md
     - Como gerar Dashboards: contributing/visualizar_dashboards.md
     - Melhores Praticas: contributing/praticas.md
-    - Como implantar um Deploy: contributing/deploy.md
+    # - Como implantar um Deploy: contributing/deploy.md
     - Replicação:
       - Visão Geral: replicacao/index.md
       - Pré-requisitos: replicacao/pre-requisitos.md
