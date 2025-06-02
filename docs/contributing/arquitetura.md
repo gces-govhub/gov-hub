@@ -1,93 +1,97 @@
-# arquitetura e infraestrutura
+# Arquitetura e Infraestrutura
 
-Esta seção apresenta a visão geral da arquitetura do govhub, os principais componentes da infraestrutura, bem como orientações sobre configuração e escalabilidade. o objetivo é fornecer uma compreensão clara de como os dados fluem pela plataforma, desde sua origem até a visualização.
-
----
-
-## visão geral da arquitetura
-
-a arquitetura do gov hub br é baseada em uma estrutura de dados que segue os princípios do data lakehouse, utilizando camadas de processamento (bronze, silver e gold) para garantir qualidade e governança dos dados.
-
-o fluxo básico pode ser representado assim:
-
-origens de dados → airflow (orquestração) → dbt (transformação)
-→ data warehouse (bronze/silver/gold) → superset (visualização)
+Esta seção apresenta uma visão geral da arquitetura do **GovHubBR**, seus principais componentes de infraestrutura e orientações sobre configuração e escalabilidade. O objetivo é oferecer uma compreensão clara de como os dados fluem pela plataforma, desde sua origem até a visualização.
 
 ---
 
-## componentes da infraestrutura
+## 🌍 Visão Geral da Arquitetura
 
-### 🔧 apache airflow
+A arquitetura do GovHubBR segue os princípios de **data lakehouse**, com camadas de processamento **Bronze**, **Silver** e **Gold**, garantindo qualidade, rastreabilidade e governança de dados.
 
-- atua como motor de orquestração de tarefas (dags), permitindo agendamento, dependência entre processos e monitoramento em tempo real.
-- cada fluxo de dados (etl) é representado como uma DAG.
-- integração nativa com docker e astronomer cosmos.
+**Fluxo simplificado de dados:**
 
-### 🔧 dbt (data build tool)
-
-- responsável pela transformação e modelagem dos dados no ambiente analítico.
-- realiza versionamento de modelos, documentação automática e validação de dados.
-- opera sobre dados brutos (bronze) e gera tabelas intermediárias (silver) e finais (gold).
-
-### 🔧 astronomer cosmos
-
-- extensão que integra airflow e dbt de forma nativa.
-- permite executar modelos dbt como tarefas dentro das dags do airflow.
-- reduz a complexidade da integração entre transformação e orquestração.
-
-### 🛢️ data warehouse (postgresql)
-
-- estrutura de armazenamento de dados dividida em três camadas:
-  - **bronze**: dados brutos, diretamente extraídos das fontes.
-  - **silver**: dados limpos e tratados, prontos para análise.
-  - **gold**: dados agregados, otimizados para consumo por ferramentas de BI.
-- atualmente implementado com postgresql, mas preparado para escalar para soluções cloud (ex: redshift, bigquery).
-
-### 📊 ferramentas de bi
-
-- **apache superset**: plataforma open-source utilizada para criar dashboards interativos.
+```
+Origens de Dados → Apache Airflow (Orquestração) → DBT (Transformação)
+ → Data Warehouse (Bronze / Silver / Gold) → Superset (Visualização)
+```
 
 ---
 
-## configuração da infraestrutura
+## 🛠️ Componentes da Infraestrutura
 
-### servidores e ambiente
+### 🔧 Apache Airflow
 
-- o projeto pode ser executado localmente com docker-compose ou em ambientes cloud.
-- estrutura recomendada:
-  - servidor para orquestração (airflow + cosmos)
-  - servidor para banco de dados (postgres)
-  - servidor para bi (superset)
+- Motor de orquestração dos pipelines de dados (DAGs).
+- Gerencia dependências, agendamentos e monitoramento de execução.
+- Integração nativa com Docker e **Astronomer Cosmos**.
 
-### permissões e segurança
+### 🔧 DBT (Data Build Tool)
 
-- acesso ao banco de dados deve ser controlado com usuários distintos para leitura, escrita e administração.
-- airflow deve se conectar ao banco com usuário restrito (ex: `etl_user`).
-- superset deve se conectar com um usuário apenas-leitura.
-- recomenda-se a utilização de `.env` ou secrets manager para variáveis sensíveis.
+- Responsável pela transformação e modelagem dos dados.
+- Versionamento, documentação automática e validação de modelos.
+- Atua nas camadas Bronze (bruta), Silver (tratada) e Gold (agregada).
 
-### conectores
+### 🔧 Astronomer Cosmos
 
-- airflow e dbt usam conexões configuráveis por URI.
-- exemplo de conexão airflow → postgres:
+- Extensão que integra DBT diretamente ao Airflow.
+- Executa modelos DBT como tarefas dentro das DAGs.
+- Reduz complexidade e melhora manutenção dos pipelines.
 
+### 📃 Data Warehouse (PostgreSQL)
+
+- Estrutura dividida em:
+  - **Bronze**: dados brutos, extraídos diretamente das fontes.
+  - **Silver**: dados tratados e padronizados para análise.
+  - **Gold**: dados agregados e prontos para consumo por BI.
+- Atualmente utiliza PostgreSQL, com suporte para Redshift, BigQuery, etc.
+
+### 📊 Ferramentas de BI
+
+- **Apache Superset**: utilizado para visualização de dados por meio de dashboards interativos e exploratórios.
+
+---
+
+## 🚀 Configuração da Infraestrutura
+
+### 🏢 Servidores e Ambiente
+
+- Execução local via Docker Compose ou em ambientes cloud.
+- Estrutura recomendada:
+  - Servidor para orquestração (Airflow + Cosmos)
+  - Servidor de banco de dados (PostgreSQL)
+  - Servidor de BI (Superset)
+
+### 🔒 Permissões e Segurança
+
+- Controle de acesso com usuários distintos:
+  - Leitura, escrita e administração.
+  - Airflow usa `etl_user` com acesso restrito.
+  - Superset utiliza usuário somente leitura.
+- Uso de arquivos `.env` ou secret managers para variáveis sensíveis.
+
+### 🔗 Conectores
+
+- Airflow e DBT usam conexões URI:
+
+```text
 postgres://etl_user:senha@host:5432/db
+```
 
-- superset se conecta ao banco via SQLAlchemy URI configurada na interface web.
-
----
-
-## escalabilidade
-
-o gov hub br foi desenhado para operar com grandes volumes de dados e pode escalar de forma horizontal e modular:
-
-- **airflow** pode ser executado com múltiplos workers em um ambiente Kubernetes ou Celery.
-- **dbt** suporta execução paralela e pode ser integrado com cloud warehouses altamente escaláveis.
-- **postgres** pode ser substituído por soluções como redshift, snowflake ou bigquery conforme a demanda.
-- dashboards em superset podem ser otimizados com caching e queries materializadas.
+- Superset se conecta via URI SQLAlchemy configurada na interface.
 
 ---
 
-## considerações finais
+## ⚖️ Escalabilidade
 
-a arquitetura modular do gov hub br permite flexibilidade para evoluir conforme as necessidades dos órgãos públicos, mantendo uma base sólida de governança e performance.
+O GovHubBR é desenhado para lidar com grandes volumes de dados, com opções de escalabilidade horizontal e modular:
+
+- **Airflow** pode operar com múltiplos workers via Kubernetes ou Celery.
+- **DBT** suporta execução paralela e integração com cloud warehouses.
+- **PostgreSQL** pode ser substituído por Redshift, Snowflake ou BigQuery.
+- **Superset** pode ser otimizado com caching e queries materializadas.
+
+---
+
+## 🔍 Considerações Finais
+
+A arquitetura modular do **GovHubBR** garante flexibilidade e capacidade de evoluir conforme as necessidades dos órgãos públicos, mantendo um alto padrão de governança, performance e escalabilidade.

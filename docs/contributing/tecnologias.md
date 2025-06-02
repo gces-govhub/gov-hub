@@ -1,61 +1,61 @@
-# tecnologias utilizadas
+# Tecnologias Utilizadas
 
-esta página apresenta as principais tecnologias adotadas no desenvolvimento do gov hub br. cada uma delas cumpre um papel específico na arquitetura do projeto, contribuindo para a eficiência, escalabilidade e transparência da plataforma.
-
----
-
-## apache airflow
-
-o apache airflow é responsável pelo gerenciamento e orquestração dos nossos pipelines de dados (dags). ele permite o agendamento, monitoramento e execução de tarefas complexas de forma visual e escalável.
-
-🔗 link para a documentação do airflow: [https://airflow.apache.org/](https://airflow.apache.org/)
+Esta página apresenta as principais tecnologias adotadas no desenvolvimento do **GovHubBR**. Cada uma delas exerce um papel estratégico na arquitetura do projeto, contribuindo para sua eficiência, escalabilidade e transparência.
 
 ---
 
-## dbt (data build tool)
+## 🛠 Apache Airflow
 
-o dbt é utilizado para transformar, modelar e documentar os dados dentro do ambiente analítico. ele facilita a criação de pipelines de transformação reutilizáveis e versionáveis.
+Responsável pela **orquestração dos pipelines de dados (DAGs)**, o Apache Airflow permite o agendamento, monitoramento e execução de tarefas complexas de forma visual, escalável e modular.
 
-🔗 link para a documentação do dbt: [https://docs.getdbt.com/](https://docs.getdbt.com/)
-
----
-
-## apache superset
-
-utilizamos o apache superset para criar dashboards interativos e visualizações que facilitam a análise dos dados processados. ele permite que gestores públicos explorem as informações de forma simples e eficiente.
-
-🔗 link para a documentação do superset: [https://superset.apache.org/](https://superset.apache.org/)
+🔗 [Documentação oficial do Airflow](https://airflow.apache.org/)
 
 ---
 
-## postgresql
+## 🧱 DBT (Data Build Tool)
 
-o postgresql é o banco de dados relacional utilizado para armazenar dados estruturados. sua robustez e compatibilidade com ferramentas open-source o tornam ideal para o projeto.
+Utilizamos o DBT para **transformação e modelagem de dados** em nosso ambiente analítico. Ele facilita a criação de pipelines reutilizáveis, versionáveis e com boa rastreabilidade.
 
-🔗 link para a documentação do postgresql: [https://www.postgresql.org/docs/](https://www.postgresql.org/docs/)
-
----
-
-## docker
-
-o docker é usado para conteinerizar a aplicação, garantindo ambientes consistentes em diferentes etapas do desenvolvimento, testes e produção. ele também facilita a colaboração entre equipes.
-
-🔗 link para a documentação do docker: [https://docs.docker.com/](https://docs.docker.com/)
+🔗 [Documentação oficial do DBT](https://docs.getdbt.com/)
 
 ---
 
-## mkdocs
+## 📊 Apache Superset
 
-o mkdocs é a ferramenta utilizada para criar e manter a documentação oficial do projeto. ele permite gerar páginas estáticas a partir de arquivos markdown de forma rápida e organizada.
+O Superset é a ferramenta escolhida para **visualização de dados e criação de dashboards** interativos. Ele permite que usuários explorem os dados de forma intuitiva e responsiva.
 
-🔗 link para a documentação do mkdocs: [https://www.mkdocs.org/](https://www.mkdocs.org/)
+🔗 [Documentação oficial do Superset](https://superset.apache.org/)
 
 ---
 
-## astronomer cosmos
+## 🗄 PostgreSQL
 
-o cosmos é uma extensão do astronomer para integração entre dbt e airflow. utilizamos essa ferramenta para orquestrar pipelines dbt dentro do ambiente do airflow de forma nativa e eficiente.
+Banco de dados relacional utilizado para **armazenamento de dados estruturados**. Sua robustez, performance e integração com ferramentas open-source o tornam ideal para projetos governamentais.
 
-🔗 link para a documentação do cosmos: [https://github.com/astronomer/astronomer-cosmos](https://github.com/astronomer/astronomer-cosmos)
+🔗 [Documentação oficial do PostgreSQL](https://www.postgresql.org/docs/)
+
+---
+
+## 📦 Docker
+
+Utilizado para **containerização da aplicação**, garantindo consistência entre ambientes de desenvolvimento, testes e produção. Também facilita a escalabilidade e integração entre equipes.
+
+🔗 [Documentação oficial do Docker](https://docs.docker.com/)
+
+---
+
+## 📚 MkDocs
+
+Ferramenta usada para **gerar a documentação estática** do projeto a partir de arquivos Markdown. Ela possibilita uma apresentação organizada, responsiva e fácil de manter.
+
+🔗 [Documentação oficial do MkDocs](https://www.mkdocs.org/)
+
+---
+
+## 🚀 Astronomer Cosmos
+
+Extensão do Astronomer que permite a **integração nativa entre DBT e Apache Airflow**. Utilizamos o Cosmos para orquestrar pipelines DBT dentro do ambiente do Airflow de forma padronizada e eficiente.
+
+🔗 [Repositório oficial do Cosmos](https://github.com/astronomer/astronomer-cosmos)
 
 ---

@@ -1,45 +1,77 @@
 # Guia de Contribuição
 
-Antes de começar, obrigado por considerar contribuir com o **Gov Hub BR**. acreditamos que a colaboração é essencial para construir soluções públicas mais eficientes, transparentes e sustentáveis.
+Antes de tudo, obrigado por considerar contribuir com o **GovHubBR**!  
+Acreditamos que a colaboração é essencial para construirmos soluções públicas mais eficientes, transparentes e sustentáveis.
 
-o gov hub br é um projeto open-source com o propósito de transformar dados públicos em ativos estratégicos para a administração pública e a sociedade. toda contribuição, seja código, documentação, ideias ou feedback, é bem-vinda.
+O **GovHubBR** é um projeto open-source com o objetivo de transformar dados públicos em ativos estratégicos para a administração pública e para a sociedade. Toda contribuição é bem-vinda: código, documentação, ideias ou feedback.
 
-## Como contribuir
+---
 
-1 **faça um fork do repositório**
+## 🚀 Como Contribuir
 
-Clique em "fork" no canto superior direito da página do projeto e clone o repositório no seu ambiente local:
+### 1. Faça um fork do repositório
+
+Clique no botão **"Fork"** no canto superior direito da página do projeto no GitHub e clone o repositório no seu ambiente local:
 
 ```bash
 git clone https://github.com/seu-usuario/govhub-br.git
 ```
 
-- crie uma nova branch
+### 2. Crie uma nova branch
 
-recomendamos criar uma branch com um nome descritivo, como ajuste-na-doc ou feature-nova-transformacao:
+Crie uma branch com um nome descritivo, como `ajuste-na-doc` ou `feature-transformacao-nova`:
 
 ```bash
 git checkout -b minha-contribuicao
 ```
 
-2 . **faça suas alterações**
+---
 
-contribuições podem incluir:
+### 3. Faça suas alterações
 
-- melhorias no código ou em pipelines de dados
+As contribuições podem incluir:
 
-- ajustes ou acréscimos na documentação
+- Melhorias no código ou pipelines de dados
+- Ajustes ou ampliações na documentação
+- Sugestões de novas funcionalidades
+- Correções de erros ou inconsistências
 
-- sugestões de novas funcionalidades
+Não se esqueça de **testar e validar** suas alterações antes de prosseguir.
 
-- correção de erros ou inconsistências
+---
 
-- teste e valide sua contribuição
+### 4. Envie um Pull Request (PR)
 
-1. **sobre o pull request**
+Antes de abrir o PR:
 
-Antes de enviar, certifique-se de que sua alteração está funcionando corretamente, sem quebrar funcionalidades existentes, e que segue os padrões definidos pelo projeto.
+- Certifique-se de que tudo está funcionando corretamente
+- Garanta que o estilo e as boas práticas do projeto foram seguidos
 
-Envie um pull request utilizando o modelo disponível no repositório. isso ajuda a equipe a entender rapidamente o contexto da sua contribuição e agiliza o processo de revisão.
+Em seguida:
 
-Suba sua branch para o seu fork e abra um pull request direcionado ao repositório principal. descreva de forma objetiva o que foi alterado, por que essa mudança é necessária e, sempre que possível, inclua prints, logs ou links relacionados.
+1. Suba sua branch para o seu fork:
+
+```bash
+git push origin minha-contribuicao
+```
+
+2. Acesse o repositório original no GitHub e abra um **Pull Request**, utilizando o modelo disponível no repositório.
+
+Inclua na descrição do PR:
+
+- Um resumo claro do que foi alterado
+- Por que essa mudança é necessária
+- Prints, logs ou links, sempre que possível
+
+---
+
+## 💡 Dicas adicionais
+
+- Revise suas alterações cuidadosamente antes de enviar
+- Prefira mensagens de commit claras e descritivas
+- Consulte os outros documentos da pasta `contributing/` para mais detalhes
+
+---
+
+Muito obrigado pela sua contribuição!  
+Juntos, podemos fazer do **GovHubBR** uma plataforma ainda mais robusta e acessível para todos.

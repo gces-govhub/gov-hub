@@ -154,33 +154,32 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - E-book:
-    - Gov Hub - plataforma livre de integração de dados e informações governamentais: getting-started.md
+  #- E-book:
+    #- Gov Hub - plataforma livre de integração de dados e informações governamentais: getting-started.md
   - Sobre o Projeto:
     - Propósito e Objetivo Geral: sobre-projeto/proposito-objetivo.md
     - Sistemas Estruturantes: sobre-projeto/sistemas-estruturantes.md
     - Gestão Orientada a Dados: sobre-projeto/gestao-dados.md
-    - Conceitos: sobre-projeto/sistemas-estruturantes.md
+    # - Conceitos: sobre-projeto/sistemas-estruturantes.md
     - Equipe: sobre-projeto/equipe.md
   - Getting started:
     - Instalação: getting-started.md
     - Guia de Novo usuario: guia-usuario.md
-  - Replicação:
-    - Visão Geral: replicacao/index.md
-    - Pré-requisitos: replicacao/pre-requisitos.md
-    - Arquitetura de Solução: replicacao/arquitetura.md
-    - Integração de Dados: replicacao/integracao-dados.md
-    - Dashboards e Templates: replicacao/dashboards-templates.md
   - Community:
     - Guia de Contribuição: contributing/guia-contribuicao.md
     - Tecnologias: contributing/tecnologias.md
     - Arquitetura do Projeto: contributing/arquitetura.md
     - Infraestrutura do Projeto: contributing/infraestrutura.md
-    - Como importar um banco de dados de sistema estruturante: contributing/importar_bancos.md
-    - Como Qualificar dados: contributing/qualificar.md
-    - Como integrar bases de dados: contributing/integrar.md
+    - Integração com sistemas estruturantes: contributing/importar_bancos.md
+    # - Como Qualificar dados: contributing/qualificar.md
+    # - Como integrar bases de dados: contributing/integrar.md
     - Como gerar Dashboards: contributing/visualizar_dashboards.md
     - Melhores Praticas: contributing/praticas.md
-    - Como implantar um Deploy: contributing/deploy.md
-  - Roadmap:
-    - Roadmap: roadmap/roadmap.md
+    # - Como implantar um Deploy: contributing/deploy.md
+    - Replicação:
+      - Visão Geral: replicacao/index.md
+      - Pré-requisitos: replicacao/pre-requisitos.md
+      - Arquitetura de Solução: replicacao/arquitetura.md
+      - Integração de Dados: replicacao/integracao-dados.md
+    - Roadmap:
+      - Roadmap: roadmap/roadmap.md
