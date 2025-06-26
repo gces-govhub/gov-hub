@@ -1,9 +1,10 @@
-﻿# Core dependencies - versões com wheels disponíveis
+# Core libraries - com wheels para Python 3.13/Windows
 pandas==2.0.3
 numpy==1.24.4
 requests==2.31.0
+python-dotenv==1.0.0
 
-# Testing
+# Test dependencies
 pytest==7.4.3
 flake8==6.1.0
 

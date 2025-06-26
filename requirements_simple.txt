@@ -1,0 +1,9 @@
+# Dependencias minimas que funcionam com Python 3.13
+# Bibliotecas nativas do Python sao suficientes para a PoC
+
+# Documentacao (opcional)
+mkdocs==1.5.3
+mkdocs-material==9.4.14
+
+# Nota: pandas e numpy removidos devido a incompatibilidade com Python 3.13
+# A PoC usa apenas bibliotecas nativas do Python (csv, json, pathlib, etc.)
