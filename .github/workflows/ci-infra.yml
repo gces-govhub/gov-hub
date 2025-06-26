@@ -1,0 +1,92 @@
+name: Infrastructure CI/CD Pipeline
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  terraform-plan:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.5.0"
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ./infrastructure
+
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: ./infrastructure
+
+      - name: Terraform Plan
+        run: |
+          terraform plan -no-color -out=tfplan
+          # Salvar output do plano em arquivo de texto para o comentário no PR
+          terraform show -no-color tfplan > tfplan.txt
+        working-directory: ./infrastructure
+        
+      - name: Upload Plan
+        uses: actions/upload-artifact@v3
+        with:
+          name: tfplan
+          path: ./infrastructure/tfplan
+          retention-days: 1
+
+      - name: Post Plan to PR
+        uses: actions/github-script@v7
+        if: github.event_name == 'pull_request'
+        with:
+          script: |
+            const fs = require('fs');
+            const plan = fs.readFileSync('./infrastructure/tfplan.txt', 'utf8');
+            const comment = `### Terraform Plan Output\n\`\`\`\n${plan}\n\`\`\``;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+
+  terraform-apply:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment: production
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.5.0"
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ./infrastructure
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        working-directory: ./infrastructure

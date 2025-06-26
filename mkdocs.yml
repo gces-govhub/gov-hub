@@ -154,8 +154,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  #- E-book:
-    #- Gov Hub - plataforma livre de integração de dados e informações governamentais: getting-started.md
+  - Prova de Conceito: poc.md
   - Sobre o Projeto:
     - Propósito e Objetivo Geral: sobre-projeto/proposito-objetivo.md
     - Sistemas Estruturantes: sobre-projeto/sistemas-estruturantes.md

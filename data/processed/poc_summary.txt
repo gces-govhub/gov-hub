@@ -1,0 +1,9 @@
+=== Resumo da Integração de Dados ===
+
+SIAFI:
+- Registros: 2
+- Colunas: 6
+
+DADOS INTEGRADOS:
+- Total de registros: 2
+- Total de colunas: 6

@@ -1,0 +1,72 @@
+name: Infrastructure Pipeline
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docker-compose.yml'
+      - 'infrastructure/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'docker-compose.yml'
+      - 'infrastructure/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Validate Docker Compose
+      run: |
+        docker-compose config
+        
+    - name: Test Docker Compose Build
+      run: |
+        docker-compose build --no-cache
+
+    - name: Verify Services Start
+      if: github.event_name == 'pull_request'
+      run: |
+        docker-compose up -d
+        sleep 30
+        docker-compose ps
+        docker-compose logs
+        docker-compose down
+
+  deploy:
+    needs: validate
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment: production
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build and Push Images
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        docker-compose build
+        docker-compose push
+
+    - name: Update ECS Service
+      run: |
+        aws ecs update-service --cluster govhub-cluster --service govhub-service --force-new-deployment

@@ -32,3 +32,15 @@ O formato Ã© baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.
 - Schemas JSON iniciais para documentaÃ§Ã£o e configuraÃ§Ã£o de plugins.
 - Scripts de inicializaÃ§Ã£o e configuraÃ§Ã£o de plugins.
 - DocumentaÃ§Ã£o inicial (README, guia de contribuiÃ§Ã£o, arquitetura).
+## [0.1.0] - 2025-06-25
+
+### Added
+- Configuração inicial do ambiente de desenvolvimento
+- Scripts de aquisição e integração de dados
+- Estrutura básica de documentação
+- Pipelines CI/CD para aplicação e infraestrutura
+
+### Fixed
+- Compatibilidade de dependências para Windows
+- Scripts de execução adaptados para PowerShell
+- Correção no pipeline para evitar erros de compilação
