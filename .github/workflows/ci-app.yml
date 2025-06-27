@@ -14,7 +14,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
           
       - name: Cache dependencies
         uses: actions/cache@v3
@@ -27,23 +27,24 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # Para Python 3.13, usamos apenas bibliotecas nativas
-          # pip install -r requirements_simple.txt
+          pip install -r requirements.txt
           
       - name: Lint with flake8
         run: |
-          # Apenas verificacao basica sem instalar flake8
-          python -m py_compile data_acquirer_simple.py
-          python -m py_compile integrate_data_simple.py
+          flake8 data_acquirer.py integrate_data_simple.py integrate_data_advanced.py process_siafi_large.py validate_fase2.py --max-line-length=88 --extend-ignore=E203,W503,E501
+          
+      - name: Format check with black
+        run: |
+          black --check --diff data_acquirer.py integrate_data_simple.py integrate_data_advanced.py process_siafi_large.py validate_fase2.py --line-length=88
           
       - name: Test with pytest
         run: |
-          # Testar compilacao dos scripts
-          python -m py_compile data_acquirer_simple.py
+          python -m py_compile data_acquirer.py
           python -m py_compile integrate_data_simple.py
-          # Testar execucao da PoC
-          python data_acquirer_simple.py --source all
-          python integrate_data_simple.py
+          python -m py_compile integrate_data_advanced.py
+          python -m py_compile process_siafi_large.py
+          python -m py_compile validate_fase2.py
+          python validate_fase2.py
 
   build-and-push:
     needs: lint-and-test

@@ -1,0 +1,53 @@
+name: Code Quality Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-quality-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-quality-
+            
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 black ruff
+          
+      - name: Run flake8
+        run: |
+          flake8 data_acquirer.py integrate_data_simple.py integrate_data_advanced.py process_siafi_large.py validate_fase2.py integrate_data.py --max-line-length=88 --extend-ignore=E203,W503,E501 --statistics
+          
+      - name: Check code formatting with black
+        run: |
+          black --check --diff data_acquirer.py integrate_data_simple.py integrate_data_advanced.py process_siafi_large.py validate_fase2.py integrate_data.py --line-length=88
+          
+      - name: Run ruff linter
+        run: |
+          ruff check data_acquirer.py integrate_data_simple.py integrate_data_advanced.py process_siafi_large.py validate_fase2.py integrate_data.py
+          
+      - name: Test imports and syntax
+        run: |
+          python -m py_compile data_acquirer.py
+          python -m py_compile integrate_data_simple.py
+          python -m py_compile integrate_data_advanced.py
+          python -m py_compile process_siafi_large.py
+          python -m py_compile validate_fase2.py
+          python -m py_compile integrate_data.py

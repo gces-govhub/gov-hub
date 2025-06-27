@@ -1,6 +1,6 @@
 === Resumo da Integracao de Dados ===
 
-Data/Hora da Execucao: 2025-06-26 19:50:19
+Data/Hora da Execucao: 2025-06-27 19:11:15
 
 Fontes de Dados:
 - SIAFI: 2 registros
