@@ -1,0 +1,1704 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Gov Hub - plataforma livre de integração de dados e informações governamentais - Explore como a gestão orientada a dados pode transformar a administração pública,  integrando e qualificando dados de sistemas estruturantes essenciais.  Este projeto aborda os desafios da fragmentação e inconsistência de dados, promovendo eficiência,  transparência e melhor tomada de decisão no âmbito governamental.">
+      
+      
+        <meta name="author" content="Lab Livre">
+      
+      
+        <link rel="canonical" href="https://govhub.github.io/govhub/guias/GUIA_CONFIGURACAO_SEGREDOS/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.14">
+    
+    
+      
+        <title>🔐 Guia Definitivo para Configuração de Segredos - GitHub Actions - GovHubBR</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fad675c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/css/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config",""),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  <link rel="stylesheet" href="../../assets/stylesheets/custom.7c86dd97.min.css">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guia-definitivo-para-configuracao-de-segredos-github-actions" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+              <button class="md-banner__button md-icon" aria-label="Não mostrar isso novamente">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+              </button>
+            
+            
+  Para atualizações entre em contato!
+
+          </div>
+          
+            <script>var content,el=document.querySelector("[data-md-component=announce]");el&&(content=el.querySelector(".md-typeset"),__md_hash(content.innerHTML)===__md_get("__announce")&&(el.hidden=!0))</script>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="GovHubBR" class="md-header__button md-logo" aria-label="GovHubBR" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89 89">
+  <path d="M3.136,17.387l0,42.932l42.932,21.467l-42.932,-64.399Z" />
+  <path d="M21.91,8l42.933,64.398l-18.775,9.388l-42.932,-64.399l18.774,-9.387Z" style="fill-opacity: 0.5" />
+  <path d="M67.535,17.387l-27.262,18.156l21.878,32.818l5.384,2.691l0,-53.665Z" />
+  <path d="M67.535,17.387l0,53.666l18.774,-9.388l0,-53.665l-18.774,9.387Z" style="fill-opacity: 0.25" />
+</svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GovHubBR
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🔐 Guia Definitivo para Configuração de Segredos - GitHub Actions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/GovHub-br/govhub" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GovHub-br/govhub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../poc/" class="md-tabs__link">
+        
+  
+    
+  
+  Prova de Conceito
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sobre-projeto/proposito-objetivo/" class="md-tabs__link">
+          
+  
+    
+  
+  Sobre o Projeto
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/" class="md-tabs__link">
+          
+  
+    
+  
+  Getting started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../contributing/guia-contribuicao/" class="md-tabs__link">
+          
+  
+    
+  
+  Community
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="GovHubBR" class="md-nav__button md-logo" aria-label="GovHubBR" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89 89">
+  <path d="M3.136,17.387l0,42.932l42.932,21.467l-42.932,-64.399Z" />
+  <path d="M21.91,8l42.933,64.398l-18.775,9.388l-42.932,-64.399l18.774,-9.387Z" style="fill-opacity: 0.5" />
+  <path d="M67.535,17.387l-27.262,18.156l21.878,32.818l5.384,2.691l0,-53.665Z" />
+  <path d="M67.535,17.387l0,53.666l18.774,-9.388l0,-53.665l-18.774,9.387Z" style="fill-opacity: 0.25" />
+</svg>
+
+    </a>
+    GovHubBR
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/GovHub-br/govhub" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GovHub-br/govhub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../poc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prova de Conceito
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Sobre o Projeto
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Sobre o Projeto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sobre-projeto/proposito-objetivo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Propósito e Objetivo Geral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sobre-projeto/sistemas-estruturantes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sistemas Estruturantes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sobre-projeto/gestao-dados/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gestão Orientada a Dados
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sobre-projeto/equipe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Equipe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Instalação
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guia-usuario/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guia de Novo usuario
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Community
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Community
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/guia-contribuicao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guia de Contribuição
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/tecnologias/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tecnologias
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/arquitetura/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arquitetura do Projeto
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/infraestrutura/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Infraestrutura do Projeto
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/importar_bancos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Integração com sistemas estruturantes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/visualizar_dashboards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Como gerar Dashboards
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/praticas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Melhores Praticas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../replicacao/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Replicação
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_8" id="__nav_5_8_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            Replicação
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../replicacao/pre-requisitos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pré-requisitos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../replicacao/arquitetura/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Arquitetura de Solução
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../replicacao/integracao-dados/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Integração de Dados
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Roadmap
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            Roadmap
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roadmap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#indice" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Índice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segredos-necessarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔑 Segredos Necessários
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔑 Segredos Necessários">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-hub-para-builds-e-deploys-de-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker Hub (para builds e deploys de containers)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-para-infraestrutura-e-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS (para infraestrutura e deploy)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-acessar-as-configuracoes-de-segredos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Como Acessar as Configurações de Segredos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Como Acessar as Configurações de Segredos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passo-1-navegue-para-o-repositorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Passo 1: Navegue para o Repositório
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passo-2-acesse-as-configuracoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Passo 2: Acesse as Configurações
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracao-passo-a-passo" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ Configuração Passo a Passo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Configuração Passo a Passo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-hub-configuracao-de-segredos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🐳 Docker Hub - Configuração de Segredos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🐳 Docker Hub - Configuração de Segredos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker_username" class="md-nav__link">
+    <span class="md-ellipsis">
+      DOCKER_USERNAME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dockerhub_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      DOCKERHUB_TOKEN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-configuracao-de-segredos" class="md-nav__link">
+    <span class="md-ellipsis">
+      ☁️ AWS - Configuração de Segredos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="☁️ AWS - Configuração de Segredos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws_region" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS_REGION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws_access_key_id-e-aws_secret_access_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWS_ACCESS_KEY_ID e AWS_SECRET_ACCESS_KEY
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validacao-das-configuracoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Validação das Configurações
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ Validação das Configurações">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lista-de-segredos-configurados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lista de Segredos Configurados:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#teste-dos-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Teste dos Pipelines:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Troubleshooting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problema-docker-hub-authentication-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema: Docker Hub authentication failed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-aws-credentials-invalid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema: AWS credentials invalid
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-regiao-aws-nao-encontrada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema: Região AWS não encontrada
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#problema-segredos-nao-aparecem-nos-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema: Segredos não aparecem nos workflows
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#boas-praticas-de-seguranca" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛡️ Boas Práticas de Segurança
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛡️ Boas Práticas de Segurança">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#faca" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Faça:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nao-faca" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Não Faça:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#suporte" class="md-nav__link">
+    <span class="md-ellipsis">
+      📞 Suporte
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checklist-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Checklist Final
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/GovHub-br/govhub/edit/master/docs/guias/GUIA_CONFIGURACAO_SEGREDOS.md" title="Editar esta página" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/GovHub-br/govhub/raw/master/docs/guias/GUIA_CONFIGURACAO_SEGREDOS.md" title="Exibir fonte desta página" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="guia-definitivo-para-configuracao-de-segredos-github-actions">🔐 Guia Definitivo para Configuração de Segredos - GitHub Actions<a class="headerlink" href="#guia-definitivo-para-configuracao-de-segredos-github-actions" title="Permanent link">&para;</a></h1>
+<p>Este guia fornece instruções passo a passo para configurar todos os segredos necessários para o funcionamento completo dos pipelines de CI/CD do projeto Gov-Hub.</p>
+<h2 id="indice">📋 Índice<a class="headerlink" href="#indice" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#segredos-necessários">Segredos Necessários</a></li>
+<li><a href="#como-acessar-as-configurações-de-segredos">Como Acessar as Configurações de Segredos</a></li>
+<li><a href="#configuração-passo-a-passo">Configuração Passo a Passo</a></li>
+<li><a href="#validação-das-configurações">Validação das Configurações</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ol>
+<hr />
+<h2 id="segredos-necessarios">🔑 Segredos Necessários<a class="headerlink" href="#segredos-necessarios" title="Permanent link">&para;</a></h2>
+<p>O projeto Gov-Hub requer os seguintes segredos para funcionamento completo:</p>
+<h3 id="docker-hub-para-builds-e-deploys-de-containers"><strong>Docker Hub (para builds e deploys de containers)</strong><a class="headerlink" href="#docker-hub-para-builds-e-deploys-de-containers" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>DOCKER_USERNAME</code> - Nome de usuário do Docker Hub</li>
+<li><code>DOCKERHUB_TOKEN</code> - Token de acesso do Docker Hub</li>
+</ul>
+<h3 id="aws-para-infraestrutura-e-deploy"><strong>AWS (para infraestrutura e deploy)</strong><a class="headerlink" href="#aws-para-infraestrutura-e-deploy" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>AWS_REGION</code> - Região AWS (ex: <code>us-east-1</code>, <code>sa-east-1</code>)</li>
+<li><code>AWS_ACCESS_KEY_ID</code> - Chave de acesso AWS</li>
+<li><code>AWS_SECRET_ACCESS_KEY</code> - Chave secreta AWS</li>
+</ul>
+<hr />
+<h2 id="como-acessar-as-configuracoes-de-segredos">🛠️ Como Acessar as Configurações de Segredos<a class="headerlink" href="#como-acessar-as-configuracoes-de-segredos" title="Permanent link">&para;</a></h2>
+<h3 id="passo-1-navegue-para-o-repositorio"><strong>Passo 1: Navegue para o Repositório</strong><a class="headerlink" href="#passo-1-navegue-para-o-repositorio" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Acesse o repositório Gov-Hub no GitHub: <code>https://github.com/[SEU-USUARIO]/gov-hub</code></li>
+<li>Certifique-se de estar logado com uma conta que tenha permissões de administrador</li>
+</ol>
+<h3 id="passo-2-acesse-as-configuracoes"><strong>Passo 2: Acesse as Configurações</strong><a class="headerlink" href="#passo-2-acesse-as-configuracoes" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Clique na aba <strong>"Settings"</strong> (Configurações) no topo da página do repositório</li>
+<li>No menu lateral esquerdo, procure pela seção <strong>"Security"</strong></li>
+<li>Clique em <strong>"Secrets and variables"</strong></li>
+<li>Selecione <strong>"Actions"</strong></li>
+</ol>
+<hr />
+<h2 id="configuracao-passo-a-passo">⚙️ Configuração Passo a Passo<a class="headerlink" href="#configuracao-passo-a-passo" title="Permanent link">&para;</a></h2>
+<h3 id="docker-hub-configuracao-de-segredos"><strong>🐳 Docker Hub - Configuração de Segredos</strong><a class="headerlink" href="#docker-hub-configuracao-de-segredos" title="Permanent link">&para;</a></h3>
+<h4 id="docker_username"><strong>DOCKER_USERNAME</strong><a class="headerlink" href="#docker_username" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Na página de segredos do GitHub Actions, clique em <strong>"New repository secret"</strong></li>
+<li><strong>Name:</strong> <code>DOCKER_USERNAME</code></li>
+<li><strong>Secret:</strong> Seu nome de usuário do Docker Hub (ex: <code>meunome</code>)</li>
+<li>Clique em <strong>"Add secret"</strong></li>
+</ol>
+<h4 id="dockerhub_token"><strong>DOCKERHUB_TOKEN</strong><a class="headerlink" href="#dockerhub_token" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>Primeiro, gere um token no Docker Hub:</strong></li>
+<li>Acesse <a href="https://hub.docker.com">Docker Hub</a></li>
+<li>Vá para: Account Settings → Security → New Access Token</li>
+<li>Nome do token: <code>gov-hub-ci-cd</code></li>
+<li>Permissões: <code>Read, Write, Delete</code></li>
+<li>
+<p>Copie o token gerado (você não conseguirá vê-lo novamente)</p>
+</li>
+<li>
+<p><strong>No GitHub:</strong></p>
+</li>
+<li>Clique em <strong>"New repository secret"</strong></li>
+<li><strong>Name:</strong> <code>DOCKERHUB_TOKEN</code></li>
+<li><strong>Secret:</strong> Cole o token copiado do Docker Hub</li>
+<li>Clique em <strong>"Add secret"</strong></li>
+</ol>
+<h3 id="aws-configuracao-de-segredos"><strong>☁️ AWS - Configuração de Segredos</strong><a class="headerlink" href="#aws-configuracao-de-segredos" title="Permanent link">&para;</a></h3>
+<h4 id="aws_region"><strong>AWS_REGION</strong><a class="headerlink" href="#aws_region" title="Permanent link">&para;</a></h4>
+<ol>
+<li>Clique em <strong>"New repository secret"</strong></li>
+<li><strong>Name:</strong> <code>AWS_REGION</code></li>
+<li><strong>Secret:</strong> A região AWS onde você quer fazer deploy (ex: <code>sa-east-1</code> para São Paulo)</li>
+<li>Clique em <strong>"Add secret"</strong></li>
+</ol>
+<h4 id="aws_access_key_id-e-aws_secret_access_key"><strong>AWS_ACCESS_KEY_ID e AWS_SECRET_ACCESS_KEY</strong><a class="headerlink" href="#aws_access_key_id-e-aws_secret_access_key" title="Permanent link">&para;</a></h4>
+<p>⚠️ <strong>IMPORTANTE:</strong> Use um usuário IAM específico para CI/CD, não suas credenciais pessoais!</p>
+<ol>
+<li><strong>Crie um usuário IAM no AWS:</strong></li>
+<li>Acesse o AWS Console → IAM → Users → Create user</li>
+<li>Nome: <code>gov-hub-ci-cd</code></li>
+<li>Anexe políticas necessárias (ex: <code>AmazonEC2FullAccess</code>, <code>AmazonS3FullAccess</code>)</li>
+<li>
+<p>Gere chaves de acesso: Access key → CLI, SDK, &amp; API access</p>
+</li>
+<li>
+<p><strong>Configure AWS_ACCESS_KEY_ID:</strong></p>
+</li>
+<li><strong>Name:</strong> <code>AWS_ACCESS_KEY_ID</code></li>
+<li><strong>Secret:</strong> A Access Key ID gerada</li>
+<li>
+<p>Clique em <strong>"Add secret"</strong></p>
+</li>
+<li>
+<p><strong>Configure AWS_SECRET_ACCESS_KEY:</strong></p>
+</li>
+<li><strong>Name:</strong> <code>AWS_SECRET_ACCESS_KEY</code></li>
+<li><strong>Secret:</strong> A Secret Access Key gerada</li>
+<li>Clique em <strong>"Add secret"</strong></li>
+</ol>
+<hr />
+<h2 id="validacao-das-configuracoes">✅ Validação das Configurações<a class="headerlink" href="#validacao-das-configuracoes" title="Permanent link">&para;</a></h2>
+<p>Após configurar todos os segredos, você deve ver:</p>
+<h3 id="lista-de-segredos-configurados"><strong>Lista de Segredos Configurados:</strong><a class="headerlink" href="#lista-de-segredos-configurados" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>DOCKER_USERNAME          ••••••••
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>DOCKERHUB_TOKEN          ••••••••
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>AWS_REGION               ••••••••
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>AWS_ACCESS_KEY_ID        ••••••••
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>AWS_SECRET_ACCESS_KEY    ••••••••
+</span></code></pre></div>
+<h3 id="teste-dos-pipelines"><strong>Teste dos Pipelines:</strong><a class="headerlink" href="#teste-dos-pipelines" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Faça um commit pequeno no branch <code>main</code></li>
+<li>Verifique se os workflows executam sem erros relacionados a segredos</li>
+<li>Os logs devem mostrar conexões bem-sucedidas aos serviços</li>
+</ol>
+<hr />
+<h2 id="troubleshooting">🔧 Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="problema-docker-hub-authentication-failed"><strong>Problema: Docker Hub authentication failed</strong><a class="headerlink" href="#problema-docker-hub-authentication-failed" title="Permanent link">&para;</a></h3>
+<p><strong>Solução:</strong>
+- Verifique se <code>DOCKER_USERNAME</code> está correto (case-sensitive)
+- Regenere o <code>DOCKERHUB_TOKEN</code> no Docker Hub
+- Certifique-se de que o token tem permissões de escrita</p>
+<h3 id="problema-aws-credentials-invalid"><strong>Problema: AWS credentials invalid</strong><a class="headerlink" href="#problema-aws-credentials-invalid" title="Permanent link">&para;</a></h3>
+<p><strong>Solução:</strong>
+- Verifique se as chaves AWS estão corretas
+- Confirme que o usuário IAM tem as permissões necessárias
+- Teste as credenciais com AWS CLI localmente</p>
+<h3 id="problema-regiao-aws-nao-encontrada"><strong>Problema: Região AWS não encontrada</strong><a class="headerlink" href="#problema-regiao-aws-nao-encontrada" title="Permanent link">&para;</a></h3>
+<p><strong>Solução:</strong>
+- Use códigos de região válidos: <code>us-east-1</code>, <code>us-west-2</code>, <code>sa-east-1</code>, etc.
+- Verifique se a região suporta os serviços necessários</p>
+<h3 id="problema-segredos-nao-aparecem-nos-workflows"><strong>Problema: Segredos não aparecem nos workflows</strong><a class="headerlink" href="#problema-segredos-nao-aparecem-nos-workflows" title="Permanent link">&para;</a></h3>
+<p><strong>Solução:</strong>
+- Aguarde alguns minutos (propagação pode ser lenta)
+- Verifique se os nomes dos segredos estão exatamente iguais nos workflows
+- Confirme permissões de administrador no repositório</p>
+<hr />
+<h2 id="boas-praticas-de-seguranca">🛡️ Boas Práticas de Segurança<a class="headerlink" href="#boas-praticas-de-seguranca" title="Permanent link">&para;</a></h2>
+<h3 id="faca"><strong>✅ Faça:</strong><a class="headerlink" href="#faca" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Use tokens específicos para CI/CD, não credenciais pessoais</li>
+<li>Configure permissões mínimas necessárias</li>
+<li>Monitore o uso dos tokens regularmente</li>
+<li>Renove tokens periodicamente</li>
+</ul>
+<h3 id="nao-faca"><strong>❌ Não Faça:</strong><a class="headerlink" href="#nao-faca" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Nunca commite segredos no código</li>
+<li>Não use credenciais de produção para testes</li>
+<li>Não compartilhe tokens em canais inseguros</li>
+<li>Não dê permissões excessivas a usuários IAM</li>
+</ul>
+<hr />
+<h2 id="suporte">📞 Suporte<a class="headerlink" href="#suporte" title="Permanent link">&para;</a></h2>
+<p>Se você encontrar problemas durante a configuração:</p>
+<ol>
+<li><strong>Verifique os logs</strong> dos workflows para mensagens de erro específicas</li>
+<li><strong>Consulte a documentação</strong> do serviço específico (Docker Hub, AWS)</li>
+<li><strong>Teste localmente</strong> as credenciais antes de configurar no GitHub</li>
+</ol>
+<hr />
+<h2 id="checklist-final">📝 Checklist Final<a class="headerlink" href="#checklist-final" title="Permanent link">&para;</a></h2>
+<p>Antes de considerar a configuração completa, confirme:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Todos os 5 segredos estão configurados</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Os nomes dos segredos estão corretos (case-sensitive)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Os tokens/chaves têm permissões adequadas</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Um workflow de teste foi executado com sucesso</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Não há erros de autenticação nos logs</li>
+</ul>
+<hr />
+<p><em>Guia atualizado em 26 de junho de 2025</em><br />
+<em>Projeto Gov-Hub - Configuração de CI/CD</em></p>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Lab Livre 2025
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/GovHub-br/govhub.githubio" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
+    
+    
+  
+      <script src="../../assets/javascripts/bundle.cd18aaf1.min.js"></script>
+      
+    
+  <script src="../../assets/javascripts/custom.00e08f28.min.js"></script>
+
+  </body>
+</html>
