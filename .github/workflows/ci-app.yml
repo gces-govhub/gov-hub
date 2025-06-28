@@ -1,10 +1,8 @@
-name: CI/CD Application Pipeline
+name: Legacy CI Pipeline (Disabled)
 
+# Temporarily disabled - using basic-ci.yml instead
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch: # Manual trigger only
 
 jobs:
   lint-and-test:
@@ -31,16 +29,16 @@ jobs:
           
       - name: Lint with flake8
         run: |
-          flake8 data_acquirer.py integrate_data_simple.py integrate_data_advanced.py process_siafi_large.py validate_fase2.py --max-line-length=88 --extend-ignore=E203,W503,E501
+          flake8 data_acquirer.py integrate_data.py integrate_data_advanced.py process_siafi_large.py validate_fase2.py --max-line-length=88 --extend-ignore=E203,W503,E501 --statistics
           
       - name: Format check with black
         run: |
-          black --check --diff data_acquirer.py integrate_data_simple.py integrate_data_advanced.py process_siafi_large.py validate_fase2.py --line-length=88
+          black --check --diff data_acquirer.py integrate_data.py integrate_data_advanced.py process_siafi_large.py validate_fase2.py --line-length=88
           
       - name: Test with pytest
         run: |
           python -m py_compile data_acquirer.py
-          python -m py_compile integrate_data_simple.py
+          python -m py_compile integrate_data.py
           python -m py_compile integrate_data_advanced.py
           python -m py_compile process_siafi_large.py
           python -m py_compile validate_fase2.py
