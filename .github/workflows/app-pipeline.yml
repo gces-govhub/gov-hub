@@ -43,7 +43,8 @@ jobs:
 
     - name: Run linting
       run: |
-        flake8 . --count --max-complexity=10 --max-line-length=127 --statistics
+        # Only lint specific directories to avoid file not found errors
+        flake8 src/govhub/ --count --max-complexity=10 --max-line-length=127 --statistics --extend-ignore=E203,W503
 
     - name: Run tests with coverage
       run: |

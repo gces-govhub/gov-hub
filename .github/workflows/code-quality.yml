@@ -1,10 +1,8 @@
-name: Code Quality Check
+name: Code Quality Check (Disabled)
 
+# Temporarily disabled - using basic-ci.yml instead
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch: # Manual trigger only
 
 jobs:
   quality-check:

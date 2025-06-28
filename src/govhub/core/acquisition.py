@@ -33,7 +33,7 @@ logger = logging.getLogger(__name__)
 class GovHubDataAcquirer:
     """
     Classe principal para aquisição robusta de dados governamentais.
-    
+
     Esta classe implementa funcionalidades para:
     - Download de dados do SIAFI
     - Download de dados do Compras.gov.br
@@ -216,7 +216,9 @@ class GovHubDataAcquirer:
             logger.error(f"❌ Erro ao extrair ZIP: {e}")
             return False
 
-    def _download_large_file(self, url: str, headers: Dict, filename: str) -> Optional[Path]:
+    def _download_large_file(
+        self, url: str, headers: Dict, filename: str
+    ) -> Optional[Path]:
         """
         Baixa arquivo grande usando streaming.
 
@@ -466,7 +468,9 @@ class GovHubDataAcquirer:
                             "data", data.get("results", data.get("items", []))
                         )
                     else:
-                        logger.warning(f"Estrutura de resposta inesperada: {type(data)}")
+                        logger.warning(
+                            f"Estrutura de resposta inesperada: {type(data)}"
+                        )
                         break
 
                     if not page_data:
@@ -474,7 +478,9 @@ class GovHubDataAcquirer:
                         break
 
                     all_data.extend(page_data)
-                    logger.info(f"Página {page + 1}: {len(page_data)} registros coletados")
+                    logger.info(
+                        f"Página {page + 1}: {len(page_data)} registros coletados"
+                    )
 
                     if len(page_data) < 100:
                         logger.info("Última página atingida")
@@ -531,7 +537,9 @@ class GovHubDataAcquirer:
                         "data", data.get("transferencias", data.get("convenios", []))
                     )
                 else:
-                    logger.warning(f"Estrutura inesperada da API TransfereGov: {type(data)}")
+                    logger.warning(
+                        f"Estrutura inesperada da API TransfereGov: {type(data)}"
+                    )
                     return False
 
                 if records:
@@ -579,7 +587,13 @@ class GovHubDataAcquirer:
                     "2025NE000126",
                     "2025NE000127",
                 ],
-                "valor_empenhado": [150000.00, 75000.50, 200000.00, 95000.75, 180000.25],
+                "valor_empenhado": [
+                    150000.00,
+                    75000.50,
+                    200000.00,
+                    95000.75,
+                    180000.25,
+                ],
                 "credor": [
                     "12345678000123",
                     "98765432000876",
@@ -594,14 +608,26 @@ class GovHubDataAcquirer:
                     "2025-04-05",
                     "2025-05-12",
                 ],
-                "funcao": ["Administração", "Educação", "Saúde", "Segurança", "Transporte"],
+                "funcao": [
+                    "Administração",
+                    "Educação",
+                    "Saúde",
+                    "Segurança",
+                    "Transporte",
+                ],
             }
             filename = f"siafi_amostra_{timestamp}.csv"
 
         elif resource == "compras":
             data = {
                 "uasg": ["153978", "153979", "154357", "154358", "154359"],
-                "id_contrato": ["2025/001", "2025/002", "2025/003", "2025/004", "2025/005"],
+                "id_contrato": [
+                    "2025/001",
+                    "2025/002",
+                    "2025/003",
+                    "2025/004",
+                    "2025/005",
+                ],
                 "valor_total": [150000.00, 75000.50, 200000.00, 95000.75, 180000.25],
                 "cnpj_contratada": [
                     "12345678000123",
@@ -807,4 +833,5 @@ def main():
 
 if __name__ == "__main__":
     import sys
+
     sys.exit(main())

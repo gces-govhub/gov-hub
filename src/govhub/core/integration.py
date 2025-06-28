@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 class DataIntegrator:
     """
     Classe principal para integração de dados governamentais.
-    
+
     Esta classe implementa funcionalidades para:
     - Carregamento de dados CSV
     - Integração entre diferentes fontes
@@ -30,7 +30,9 @@ class DataIntegrator:
     - Salvamento de dados processados
     """
 
-    def __init__(self, raw_data_dir: str = "data/raw", processed_data_dir: str = "data/processed"):
+    def __init__(
+        self, raw_data_dir: str = "data/raw", processed_data_dir: str = "data/processed"
+    ):
         """
         Inicializa o Data Integrator.
 
@@ -41,7 +43,7 @@ class DataIntegrator:
         self.raw_dir = Path(raw_data_dir)
         self.processed_dir = Path(processed_data_dir)
         self.processed_dir.mkdir(parents=True, exist_ok=True)
-        
+
         logger.info("DataIntegrator inicializado")
         logger.info(f"Diretório de dados brutos: {self.raw_dir}")
         logger.info(f"Diretório de dados processados: {self.processed_dir}")
@@ -93,7 +95,10 @@ class DataIntegrator:
                 if not files["compras"] or filename > files["compras"].lower():
                     files["compras"] = file_path.name
             elif "convenio" in filename or "transfere" in filename:
-                if not files["transferegov"] or filename > files["transferegov"].lower():
+                if (
+                    not files["transferegov"]
+                    or filename > files["transferegov"].lower()
+                ):
                     files["transferegov"] = file_path.name
 
         logger.info("Arquivos descobertos:")
@@ -105,7 +110,9 @@ class DataIntegrator:
 
         return files
 
-    def integrate_government_data(self) -> Tuple[List[Dict], Dict[str, int], Dict[str, int]]:
+    def integrate_government_data(
+        self,
+    ) -> Tuple[List[Dict], Dict[str, int], Dict[str, int]]:
         """
         Integra dados de diferentes fontes governamentais.
 
@@ -116,9 +123,13 @@ class DataIntegrator:
 
         # Carregar dados de cada fonte
         siafi_data = self.load_csv_file_data(files["siafi"]) if files["siafi"] else []
-        compras_data = self.load_csv_file_data(files["compras"]) if files["compras"] else []
+        compras_data = (
+            self.load_csv_file_data(files["compras"]) if files["compras"] else []
+        )
         transfere_data = (
-            self.load_csv_file_data(files["transferegov"]) if files["transferegov"] else []
+            self.load_csv_file_data(files["transferegov"])
+            if files["transferegov"]
+            else []
         )
 
         # Criar índices para join eficiente
@@ -152,7 +163,9 @@ class DataIntegrator:
             integrated_data.append(integrated_row)
             matches["total_integrated"] += 1
 
-        logger.info(f"Integração concluída: {matches['total_integrated']} registros processados")
+        logger.info(
+            f"Integração concluída: {matches['total_integrated']} registros processados"
+        )
         logger.info(f"Matches SIAFI-Compras: {matches['siafi_compras']}")
         logger.info(f"Matches SIAFI-TransfereGov: {matches['siafi_transfere']}")
 
@@ -181,7 +194,7 @@ class DataIntegrator:
             uasg = row.get("uasg", "")
             if uasg:
                 index[uasg] = row
-        
+
         logger.info(f"Índice de compras criado: {len(index)} entradas")
         return index
 
@@ -200,7 +213,7 @@ class DataIntegrator:
             codigo_siafi = row.get("codigo_siafi", "")
             if codigo_siafi:
                 index[codigo_siafi] = row
-        
+
         logger.info(f"Índice do TransfereGov criado: {len(index)} entradas")
         return index
 
@@ -234,14 +247,18 @@ class DataIntegrator:
 
             file_size = output_file.stat().st_size / 1024  # KB
             logger.info(f"Dados integrados salvos em {output_file}")
-            logger.info(f"Arquivo gerado: {len(integrated_data)} registros, {file_size:.1f} KB")
+            logger.info(
+                f"Arquivo gerado: {len(integrated_data)} registros, {file_size:.1f} KB"
+            )
             return True
 
         except Exception as e:
             logger.error(f"Erro ao salvar dados integrados: {e}")
             return False
 
-    def generate_integration_summary(self, matches: Dict[str, int], counts: Dict[str, int]) -> bool:
+    def generate_integration_summary(
+        self, matches: Dict[str, int], counts: Dict[str, int]
+    ) -> bool:
         """
         Gera relatório de resumo da integração.
 
@@ -287,10 +304,12 @@ class DataIntegrator:
         try:
             with open(summary_file, "w", encoding="utf-8") as f:
                 f.write("\n".join(summary_lines))
-            
+
             file_size = summary_file.stat().st_size
             logger.info(f"Relatório salvo em {summary_file}")
-            logger.info(f"Relatório gerado: {len(summary_lines)} linhas, {file_size} bytes")
+            logger.info(
+                f"Relatório gerado: {len(summary_lines)} linhas, {file_size} bytes"
+            )
             return True
         except Exception as e:
             logger.error(f"Erro ao salvar relatório: {e}")
@@ -334,16 +353,16 @@ def main():
     """Função principal para execução standalone."""
     # Configurar logging
     logging.basicConfig(
-        level=logging.INFO, 
-        format="%(asctime)s - %(levelname)s - %(message)s"
+        level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
     )
 
     integrator = DataIntegrator()
     success = integrator.execute_complete_integration()
-    
+
     return 0 if success else 1
 
 
 if __name__ == "__main__":
     import sys
+
     sys.exit(main())
