@@ -1,3 +1,10 @@
+# Gov-Hub - .gitignore
+# Arquivos ignorados para manter o projeto organizado
+
+# Arquivos de dados sensíveis e temporários
+data/temp/*
+!data/temp/.gitkeep
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

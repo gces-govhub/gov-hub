@@ -1,0 +1,136 @@
+{
+  "data_sources": {
+    "siafi": {
+      "name": "SIAFI - Sistema Integrado de Administração Financeira",
+      "description": "Dados de execução orçamentária e despesas do governo federal",
+      "urls": [
+        {
+          "url": "https://portaldatransparencia.gov.br/download-de-dados/despesas-execucao",
+          "format": "zip",
+          "description": "Portal da Transparência - Despesas Execução (atual)",
+          "method": "GET",
+          "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+            "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Connection": "keep-alive",
+            "Upgrade-Insecure-Requests": "1"
+          }
+        },
+        {
+          "url": "https://www.tesourotransparente.gov.br/ckan/dataset/execucao-orcamentaria-da-uniao/resource/c4cbd507-c611-4666-9e5c-4e4bcf6f6172/download/execucao_orcamentaria_despesa.csv",
+          "format": "csv",
+          "description": "Tesouro Transparente - Execução Orçamentária",
+          "method": "GET",
+          "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+          }
+        },
+        {
+          "url": "https://dados.gov.br/dados/conjuntos-dados/siafi",
+          "format": "html",
+          "description": "Portal de Dados Abertos - SIAFI (para descobrir URLs atuais)",
+          "method": "GET",
+          "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+          }
+        }
+      ]
+    },
+    "compras": {
+      "name": "Compras.gov.br",
+      "description": "Dados de contratos e licitações do governo federal",
+      "urls": [
+        {
+          "url": "https://compras.dados.gov.br/contratos/v1/contratos.csv",
+          "format": "csv",
+          "description": "API Compras.gov.br - Contratos (CSV direto)",
+          "method": "GET",
+          "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "Accept": "text/csv,application/csv,*/*"
+          }
+        },
+        {
+          "url": "https://compras.dados.gov.br/api/v1/contratos.json",
+          "format": "json",
+          "description": "API Compras.gov.br - Contratos (JSON paginado)",
+          "method": "GET",
+          "params": {
+            "offset": 0,
+            "limit": 100
+          },
+          "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "Accept": "application/json"
+          }
+        },
+        {
+          "url": "https://portaldatransparencia.gov.br/download-de-dados/contratos",
+          "format": "zip",
+          "description": "Portal da Transparência - Contratos (ZIP)",
+          "method": "GET",
+          "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+          }
+        }
+      ]
+    },
+    "transferegov": {
+      "name": "TransfereGov",
+      "description": "Dados de transferências e convênios do governo federal",
+      "urls": [
+        {
+          "url": "https://api.transferegov.gestao.gov.br/api-de-dados/convenios",
+          "format": "json",
+          "description": "API TransfereGov - Convênios",
+          "method": "GET",
+          "params": {
+            "limit": 100,
+            "offset": 0
+          },
+          "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          }
+        },
+        {
+          "url": "https://transferegov.gestao.gov.br/api-de-dados/transferencias",
+          "format": "json",
+          "description": "API TransfereGov - Transferências",
+          "method": "GET",
+          "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+            "Accept": "application/json"
+          }
+        },
+        {
+          "url": "https://portaldatransparencia.gov.br/download-de-dados/convenios",
+          "format": "zip",
+          "description": "Portal da Transparência - Convênios (ZIP)",
+          "method": "GET",
+          "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+          }
+        }
+      ]
+    }
+  },
+  "download_settings": {
+    "timeout": 60,
+    "chunk_size": 8192,
+    "max_retries": 3,
+    "retry_delay": 2,
+    "max_pages": 10,
+    "rate_limit_delay": 1.5
+  },
+  "file_settings": {
+    "raw_data_dir": "data/raw",
+    "temp_dir": "data/temp",
+    "encoding": "utf-8",
+    "max_file_size_mb": 500
+  }
+}
