@@ -1,0 +1,37 @@
+{
+  "siafi": {
+    "name": "SIAFI - Sistema Integrado de Administração Financeira",
+    "description": "Dados de execução orçamentária e despesas do governo federal",
+    "url": "https://portaldatransparencia.gov.br/download-de-dados/despesas-execucao",
+    "format": "zip",
+    "method": "GET",
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+      "Accept-Language": "pt-BR,pt;q=0.9,en;q=0.8",
+      "Accept-Encoding": "gzip, deflate, br",
+      "Connection": "keep-alive",
+      "Upgrade-Insecure-Requests": "1"
+    },
+    "processing": {
+      "sample_size": 1000,
+      "required_columns": [
+        "Data do Lançamento",
+        "Órgão Superior - Nome",
+        "Órgão - Nome", 
+        "Unidade Gestora - Nome",
+        "Função - Nome",
+        "Subfunção - Nome",
+        "Programa - Nome",
+        "Ação - Nome",
+        "Categoria Econômica - Nome",
+        "Grupo de Despesa - Nome",
+        "Modalidade de Aplicação - Nome",
+        "Elemento de Despesa - Nome",
+        "Valor Empenhado",
+        "Valor Liquidado",
+        "Valor Pago"
+      ]
+    }
+  }
+}

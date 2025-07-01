@@ -1,0 +1,23 @@
+================================================================================
+RELATÓRIO BÁSICO - DADOS DO SIAFI
+================================================================================
+
+Arquivo: siafi_despesas_execucao_202501_2025-06-30.csv
+Tamanho: 39.66 MB
+Total de linhas: 48,912
+Total de registros: 48,911 (excluindo cabeçalho)
+Total de colunas: 47
+
+ESTRUTURA DE COLUNAS:
+----------------------------------------
+ 1. Ano e mês do lançamento
+ 2. Código Órgão Superior
+ 3. Nome Órgão Superior
+ 4. Código Órgão Subordinado
+ 5. Nome Órgão Subordinado
+ 6. Código Unidade Gestora
+ 7. Nome Unidade Gestora
+ 8. Código Gestão
+ 9. Nome Gestão
+10. Código Unidade Orçamentária
+... e mais 37 colunas
