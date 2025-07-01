@@ -5,6 +5,31 @@
 data/temp/*
 !data/temp/.gitkeep
 
+# Arquivos de configuração sensíveis
+.env
+.env.local
+.env.production
+*.key
+
+# Dados da PoC SIAFI - Arquivos grandes de dados reais
+data/poc_siafi/dados_brutos/*.csv
+data/poc_siafi/dados_brutos/*.json
+data/poc_siafi/dados_processados/*.csv
+data/poc_siafi/relatorios/*.txt
+data/poc_siafi/relatorios/*.log
+
+# Manter estrutura de diretórios mas ignorar conteúdo
+!data/poc_siafi/dados_brutos/.gitkeep
+!data/poc_siafi/dados_processados/.gitkeep
+!data/poc_siafi/relatorios/.gitkeep
+
+# Dados brutos originais (podem ser grandes)
+data/raw/*.csv
+!data/raw/*_sample.csv
+
+# Dados processados
+data/processed/*.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
