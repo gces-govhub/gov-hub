@@ -1,282 +1,204 @@
-# Gov-Hub: PoC SIAFI - Sistema de Coleta e Análise de Dados Governamentais
+# Gov Hub BR - plataforma de integração de dados e informações governamentais
 
-## 🎯 Status: ✅ VALIDADO COM DADOS REAIS DO PORTAL DA TRANSPARÊNCIA
+[![Contribua com o projeto 🚀](https://img.shields.io/badge/Contribua%20com%20o%20projeto-🚀-brightgreen)](CONTRIBUTING.md)
 
-**Última Validação:** 01/07/2025 16:32  
-**Taxa de Sucesso:** 96.7% (29/30 testes)  
-**API Status:** ✅ Integrada e funcional  
-**Dados Coletados:** 15 órgãos + 213 registros financeiros reais
+## Sobre o projeto
 
-### � Conquistas da PoC SIAFI
-- ✅ **Integração real** com Portal da Transparência (API oficial)
-- ✅ **Chave de API** configurada e testada
-- ✅ **Dados reais** do SIAFI coletados automaticamente
-- ✅ **Análise financeira** completa (R$ 52.9 milhões processados)
-- ✅ **Relatórios automáticos** profissionais
-- ✅ **Estrutura escalável** para produção
-- ✅ **Segurança** implementada (.gitignore, .env)
+O Gov Hub BR é uma iniciativa para enfrentar os desafios da fragmentação, redundância e inconsistências nos sistemas estruturantes do governo federal. O projeto busca transformar dados públicos em ativos estratégicos, promovendo eficiência administrativa, transparência e melhor tomada de decisão. A partir da integração de dados, gestores públicos terão acesso a informações qualificadas para subsidiar decisões mais assertivas, reduzir custos operacionais e otimizar processos internos. Além disso, a iniciativa fortalece a transparência governamental ao disponibilizar dados organizados para órgãos públicos e sociedade civil.
+
+## Objetivos
+
+O projeto busca automatizar processos e reduzir custos por meio da implementação de soluções open-source que facilitem a coleta, análise e visualização de dados. Também visa desenvolver capacidades técnicas e institucionais, oferecendo ferramentas para que gestores públicos utilizem os dados de forma eficiente e independente. A construção de uma infraestrutura tecnológica sustentável baseada em tecnologias escaláveis e flexíveis garante a longevidade da solução e sua adaptação a novas necessidades. Além disso, promove uma cultura organizacional voltada para dados, incentivando boas práticas de governança, segurança e transparência.
+
+## Impactos esperados
+
+A qualificação e integração de dados contribuem para a melhoria na qualidade das políticas públicas, permitindo que decisões sejam baseadas em informações concretas e alinhadas às necessidades da população. A redução da fragmentação de sistemas possibilita o aumento da eficiência administrativa, otimizando o uso de recursos e promovendo maior agilidade nos serviços prestados pelo governo. O fortalecimento da transparência governamental garante maior controle social e auditoria, ampliando a confiança da sociedade na administração pública.
+
+## Tecnologias utilizadas
+
+O projeto adota um stack tecnológico baseado em soluções open-source, incluindo Apache Airflow para orquestração de pipelines de dados, DBT para transformação e modelagem de informações, Apache Superset para visualização e exploração, PostgreSQL como banco de dados relacional e Docker para containerização e implantação. A escolha dessas tecnologias permite maior flexibilidade, escalabilidade e integração com diferentes sistemas governamentais.
+- [Apache Airflow](https://airflow.apache.org/) - Orquestração de pipelines de dados
+- [DBT (Data Build Tool)](https://www.getdbt.com/) - Transformação e modelagem de dados
+- [Apache Superset](https://superset.apache.org/) - Visualização e exploração de dados
+- [PostgreSQL](https://www.postgresql.org/) - Banco de dados relacional
+- [Docker](https://www.docker.com/) - Containerização e implantação de aplicações
+
+## Primeiros passo
+
+###  Pré-requisitos
+
+Antes de começar, certifique-se de ter os seguintes softwares instalados:
+
+- **Docker e Docker Compose**: Para gerenciamento de contêineres.
+- **Make**: Ferramenta de automação de build.
+- **Python 3.x**: Para execução de scripts e desenvolvimento.
+- **Git**: Controle de versão.
+
+Caso precise de ajuda para instalar esses componentes, consulte a documentação oficial de cada ferramenta:
+
+- [Instalação do Docker](https://docs.docker.com/get-docker/)
+- [Guia do Python](https://www.python.org/downloads/)
+- [Guia do Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ---
 
-## 📋 Execução Rápida
+## 🚀 Instalação
 
-### 🚀 **PoC Completa (Recomendado)**
+### 1. Clonando o Repositório
+
+Para obter o código-fonte do projeto, clone o repositório Git:
+
 ```bash
-# Instalar dependências
+git clone git@gitlab.com:lappis-unb/gest-odadosipea/app-lappis-ipea.git
+cd app-lappis-ipea
+```
+
+### 2. Configurando o Ambiente
+
+Execute o comando abaixo para configurar automaticamente o ambiente de desenvolvimento:
+
+```bash
+make setup
+```
+
+Este comando irá:
+
+- Criar ambientes virtuais necessários.
+- Instalar dependências do projeto.
+- Configurar hooks de pré-commit.
+- Preparar o ambiente de desenvolvimento para execução local.
+
+!!! note "Dica" Caso encontre problemas durante a configuração, verifique se o Docker está rodando corretamente e se você possui permissões administrativas no sistema.
+
+## 🏃‍♂️ Executando o Projeto Localmente
+
+Após a configuração, inicialize todos os serviços com o Docker Compose:
+
+```bash
+docker-compose up -d
+```
+
+### Acessando os Componentes
+
+Uma vez que os serviços estejam em execução, você pode acessar as ferramentas principais nos seguintes URLs:
+
+- Airflow: http://localhost:8080
+- Jupyter: http://localhost:8888
+- Superset: http://localhost:8088
+
+Certifique-se de que todas as portas mencionadas estejam disponíveis no seu ambiente.
+
+## 🛠 Estrutura do Projeto
+
+A estrutura do projeto é organizada para separar cada componente da stack, facilitando a manutenção e o desenvolvimento:
+
+```bash
+.
+├── airflow/           # Configurações e DAGs do Airflow
+│   ├── dags/          # Definição de workflows
+│   └── plugins/       # Plugins personalizados
+├── dbt/               # Modelos e configurações do dbt
+│   └── models/        # Modelagem de dados
+├── jupyter/           # Notebooks interativos
+│   └── notebooks/     # Análises exploratórias
+├── superset/          # Dashboards e visualizações
+│   └── dashboards/    # Configurações de dashboards
+├── docker-compose.yml # Configuração do Docker Compose
+├── Makefile           # Comandos automatizados
+└── README.md          # Documentação inicial
+```
+
+Essa organização modular permite que cada componente seja desenvolvido e mantido de forma independente.
+
+---
+
+## 🎯 Comandos Úteis no Makefile
+
+O **Makefile** facilita a execução de tarefas repetitivas e a configuração do ambiente. Aqui estão os principais comandos disponíveis:
+
+- `make setup`: Configuração inicial do projeto, incluindo instalação de dependências e configuração do ambiente.
+- `make lint`: Verificação de qualidade do código com ferramentas de linting.
+- `make tests`: Execução da suíte de testes para validar mudanças no código.
+- `make clean`: Remoção de arquivos gerados automaticamente.
+- `make build`: Criação de imagens Docker para o ambiente de desenvolvimento.
+
+## 📊 PoC SIAFI - Prova de Conceito
+
+### O que é
+
+A PoC SIAFI é uma Prova de Conceito desenvolvida para demonstrar a viabilidade técnica de integração e análise de dados do Sistema Integrado de Administração Financeira (SIAFI) do governo federal. Esta implementação valida a capacidade de automatizar a coleta, processamento e análise de dados financeiros governamentais através da API oficial do Portal da Transparência.
+
+### Como executar
+
+#### Pré-requisitos da PoC
+- Python 3.8+
+- Dependências do arquivo `requirements.txt`
+
+#### Execução da PoC Completa
+
+##### 1. Instalar Python
+- Baixe e instale Python 3.8+ do site oficial: https://www.python.org/downloads/
+- Certifique-se de marcar a opção "Add Python to PATH" durante a instalação
+
+##### 2. Configurar ambiente virtual
+```bash
+# Criar ambiente virtual
+python -m venv venv
+
+# Ativar ambiente virtual (Windows)
+venv\Scripts\activate
+
+# Ativar ambiente virtual (Linux/Mac)
+source venv/bin/activate
+```
+
+##### 3. Instalar dependências
+```bash
 pip install -r requirements.txt
+```
 
-# Executar PoC completa com dados reais
-python run_poc_siafi_complete.py
+##### 4. Configurar chave da API do Portal da Transparência
+- Acesse: http://www.portaldatransparencia.gov.br/api-de-dados/cadastrar-email
+- Cadastre seu email e obtenha a chave da API
+- Crie um arquivo `.env` na raiz do projeto:
+```bash
+# Criar arquivo .env
+echo PORTAL_TRANSPARENCIA_API_KEY=sua_chave_aqui > .env
+```
 
-# Ver resultados
+##### 5. Executar PoC completa com dados reais
+```bash
+python poc_siafi/run_poc_siafi_complete.py
+```
+
+##### 6. Verificar resultados
+```bash
+# Windows
 dir data\poc_siafi\relatorios
+
+# Linux/Mac
+ls -la data/poc_siafi/relatorios
 ```
 
-### 🔧 **Execuções Específicas**
-```bash
-# Coletar dados reais da API oficial
-python collect_real_gov_data.py
+#### Scripts principais da PoC
+- `run_poc_siafi_complete.py` - Execução completa da PoC com dados reais
+- `collect_real_gov_data.py` - Coleta de dados oficiais da API
+- `organize_siafi.py` - Organização e estruturação dos dados
+- `validate_poc_complete.py` - Validação do sistema completo
 
-# Organizar dados existentes
-python organize_siafi.py
+### Resultados obtidos
 
-# Validar sistema completo
-python validate_poc_complete.py
-```
+A PoC SIAFI demonstrou capacidade de:
 
----
+- **Integração real** com Portal da Transparência através da API oficial
+- **Coleta automatizada** de dados de 15 órgãos governamentais
+- **Processamento financeiro** de volume superior a R$ 52 milhões
+- **Geração automática** de relatórios técnicos e análises
+- **Taxa de sucesso** de 96.7% nos testes de validação
+- **Estrutura escalável** pronta para ambiente de produção
 
-## 📊 Resultados Demonstrados
+A implementação validou a viabilidade técnica da proposta do Gov Hub BR, demonstrando que é possível automatizar a coleta e análise de dados governamentais de forma eficiente e confiável.
 
-### **Dados Reais Coletados:**
-- **🏛️ Órgãos SIAFI:** 15 órgãos oficiais
-- **💰 Volume Financeiro:** R$ 52.911.248,06
-- **📈 Taxa de Liquidação:** 84.5%
-- **📉 Taxa de Pagamento:** 89.9%
-- **🎯 Fonte:** Portal da Transparência - API Oficial
+## Equipe
 
-### **Top 3 Órgãos por Gastos:**
-1. **Senado Federal:** R$ 12.98 milhões
-2. **Fundo Rotativo da Câmara:** R$ 12.69 milhões
-3. **Fundo Especial do Senado:** R$ 8.23 milhões
-
----
-
-## 📁 Estrutura de Resultados
-
-```
-data/poc_siafi/
-├── dados_brutos/           # Dados originais da API oficial
-│   ├── orgaos_siafi_*.csv    # Órgãos do governo federal
-│   └── dados_financeiros_*.csv # Transações financeiras
-├── dados_processados/      # Amostras e análises
-│   └── amostra_dados_*.csv   # Dados para análise
-└── relatorios/            # Relatórios automáticos
-    ├── poc_siafi_relatorio_completo_*.txt
-    ├── poc_siafi_relatorio_tecnico_*.txt
-    └── validacao_completa_*.txt
-```
-
----
-
-## 🔐 Configuração da API (Chave Já Configurada)
-
-A PoC já está configurada com chave de API válida do Portal da Transparência:
-
-- **Email:** pedrolucassantana@gmail.com
-- **Status:** ✅ Ativa e funcional  
-- **Local:** Arquivo `.env` (protegido no Git)
-
-### Para usar sua própria chave:
-1. Acesse: http://www.portaldatransparencia.gov.br/api-de-dados/cadastrar-email
-2. Configure no arquivo `.env`: `PORTAL_TRANSPARENCIA_API_KEY=sua_chave`
-
----
-
-## 🛠️ Scripts Principais
-
-| Script | Função | Status |
-|--------|--------|--------|
-| `run_poc_siafi_complete.py` | PoC completa com dados reais | ✅ |
-| `collect_real_gov_data.py` | Coletor oficial da API | ✅ |
-| `organize_siafi.py` | Organizador de dados | ✅ |
-| `validate_poc_complete.py` | Validador completo | ✅ |
-
----
-
-## 📈 Validação Técnica
-
-### ✅ **Ambiente Validado:**
-- **Python:** 3.13.1 ✅
-- **Dependências:** pandas, requests, numpy ✅
-- **Estrutura:** Diretórios e arquivos ✅
-- **Git:** .gitignore configurado ✅
-
-### ✅ **Funcionalidade Validada:**
-- **Coleta de dados:** API Portal da Transparência ✅
-- **Processamento:** Análise financeira ✅
-- **Relatórios:** Geração automática ✅
-- **Segurança:** Chaves protegidas ✅
-
----
-
-## 🎯 Próximos Passos
-
-### **Para Produção:**
-1. **Automatizar coletas** periódicas
-2. **Expandir para mais APIs** governamentais
-3. **Implementar dashboards** visuais
-4. **Configurar alertas** de anomalias
-
-### **Para Desenvolvimento:**
-1. **Adicionar testes** unitários
-2. **Otimizar performance** (cache, paralelização)
-3. **Criar API própria** para consultas
-4. **Desenvolver frontend** web
-
----
-
-## 📞 Suporte e Documentação
-
-### **Documentação Completa:**
-- `VALIDACAO_FINAL_POC_SIAFI.md` - Validação completa
-- `GUIA_COMPLETO_POC_SIAFI.md` - Manual de uso
-- `data/poc_siafi/relatorios/` - Relatórios técnicos
-
-### **APIs Oficiais:**
-- Portal da Transparência: https://api.portaldatransparencia.gov.br/
-- Documentação: https://api.portaldatransparencia.gov.br/swagger-ui.html
-
----
-
-## ✅ Conclusão
-
-**🎉 PoC SIAFI 100% VALIDADA E FUNCIONAL**
-
-Sistema pronto para:
-- ✅ Coleta contínua de dados governamentais
-- ✅ Análise financeira automatizada  
-- ✅ Geração de relatórios profissionais
-- ✅ Integração com sistemas corporativos
-- ✅ Expansão para outros órgãos e APIs
-
-**🏛️ Gov-Hub SIAFI - Dados Reais, Análises Confiáveis, Decisões Inteligentes**
-
-### 📋 Como Executar a PoC
-
-#### 🚀 Execução Rápida (Dados de Exemplo)
-```bash
-# 1. Instalar dependências
-pip install -r requirements.txt
-
-# 2. Organizar dados existentes
-python organize_siafi.py
-
-# 3. Executar PoC completa
-python run_siafi_poc.py
-```
-
-#### 🏛️ Coleta de Dados Reais do SIAFI
-```bash
-# 1. Configurar chave da API (obrigatório para dados reais)
-# Acesse: http://www.portaldatransparencia.gov.br/api-de-dados/cadastrar-email
-# Configure: set PORTAL_TRANSPARENCIA_API_KEY=sua_chave
-
-# 2. Demonstrar conectividade com API
-python demo_api_real.py
-
-# 3. Coletar dados reais
-python collect_real_siafi.py
-```
-
-#### 📊 Análise dos Resultados
-```bash
-# Verificar estrutura de dados
-dir data\poc_siafi
-
-# Ver relatórios gerados
-type data\poc_siafi\relatorios\*.txt
-```
-
-### 📁 Estrutura de Dados
-- `data/poc_siafi/dados_brutos/` - Dados originais do SIAFI
-- `data/poc_siafi/dados_processados/` - Amostras e dados processados
-- `data/poc_siafi/relatorios/` - Relatórios de análise e logs
-
----
-
-## Sobre o Projeto
-
-O Gov-Hub SIAFI é uma Prova de Conceito focada na coleta, processamento e análise de dados do Sistema Integrado de Administração Financeira (SIAFI) do governo federal. O projeto demonstra como automatizar a extração de dados do Portal da Transparência e gerar insights sobre a execução orçamentária.
-
-## Objetivos da PoC SIAFI
-
-- **Automatizar** a coleta de dados do SIAFI via Portal da Transparência
-- **Processar** grandes volumes de dados de despesas públicas
-- **Gerar** amostras e relatórios analíticos automaticamente
-- **Organizar** dados em estrutura clara e reproduzível
-- **Validar** a viabilidade técnica de integração com dados governamentais
-
-## Pré-requisitos
-
-- **Python 3.8+**: Para execução dos scripts
-- **pip**: Para instalação das dependências
-
-## 🚀 Instalação e Execução
-
-### 1. Clonar o Repositório
-```bash
-git clone <repository-url>
-cd gov-hub
-```
-
-### 2. Instalar Dependências
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Executar a PoC Completa
-```bash
-python run_siafi_poc.py
-```
-
-### 4. Scripts Individuais
-
-- **Baixar novos dados SIAFI**: `python siafi_acquirer.py`
-- **Organizar dados existentes**: `python organize_siafi.py`
-
-## 📊 Resultados da PoC
-
-Após a execução, você encontrará:
-
-- **Dados Brutos**: CSVs originais do SIAFI organizados
-- **Amostras**: Subconjuntos de dados para análise rápida  
-- **Relatórios**: Análises automáticas e estatísticas descritivas
-- **Logs**: Registros detalhados de execução
-
-## 🛠 Estrutura de Arquivos
-
-```
-gov-hub/
-├── siafi_acquirer.py          # Script principal de coleta SIAFI
-├── organize_siafi.py          # Organizador de dados existentes
-├── run_siafi_poc.py           # Executor da PoC completa
-├── config/
-│   └── siafi_config.json      # Configurações do SIAFI
-└── data/
-    └── poc_siafi/
-        ├── dados_brutos/      # CSVs originais
-        ├── dados_processados/ # Amostras e dados tratados
-        └── relatorios/        # Análises e logs
-```
-
-## 🎯 Próximos Passos
-
-- Expandir análises financeiras automatizadas
-- Implementar visualizações de dados
-- Integrar com outras fontes governamentais
-- Desenvolver APIs para acesso aos dados processados
-
----
-
-**Gov-Hub SIAFI** - Transformando dados do SIAFI em insights estratégicos para o governo federal.
+Gov Hub BR - transformando dados públicos em ativos estratégicos.
